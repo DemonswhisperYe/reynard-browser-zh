@@ -43,6 +43,10 @@ jobs:
         with:
           targets: aarch64-apple-ios
 
+      - name: Install Rust build tools
+        run: |
+          cargo install cbindgen --locked
+
       - name: Cache cargo
         uses: actions/cache@v4
         with:
