@@ -141,7 +141,7 @@ final class AppearancePreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Appearance"
+        title = L("Appearance")
     }
     
     required init?(coder: NSCoder) {

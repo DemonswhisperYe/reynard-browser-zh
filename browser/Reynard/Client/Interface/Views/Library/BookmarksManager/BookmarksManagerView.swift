@@ -136,7 +136,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
             usesNavigationActionsButton = false
         }
         super.init(nibName: nil, bundle: nil)
-        title = "Bookmarks"
+        title = L("Bookmarks")
     }
     
     required init?(coder: NSCoder) {
@@ -598,7 +598,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
     private func makeSections(from newItems: [BookmarkContentSnapshot]) -> [(title: String, items: [BookmarkContentSnapshot])] {
         guard Prefs.BookmarkSettings.placeFoldersOnTop else {
             let sortedItems = sorted(newItems)
-            return sortedItems.isEmpty ? [] : [("Bookmarks", sortedItems)]
+            return sortedItems.isEmpty ? [] : [(L("Bookmarks"), sortedItems)]
         }
         
         let folders = sorted(newItems.filter {
@@ -617,7 +617,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
         })
         return [
             ("Folders", folders),
-            ("Bookmarks", bookmarks),
+            (L("Bookmarks"), bookmarks),
         ].filter { !$0.items.isEmpty }
     }
     

@@ -66,7 +66,7 @@ final class TabOverviewCollection {
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Private Browsing"
+        titleLabel.text = L("Private Browsing")
         titleLabel.textAlignment = .center
         titleLabel.textColor = .secondaryLabel
         titleLabel.font = .preferredFont(forTextStyle: .title2)

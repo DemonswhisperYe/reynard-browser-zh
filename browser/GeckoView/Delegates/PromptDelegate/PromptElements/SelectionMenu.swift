@@ -118,7 +118,7 @@ final class SelectPicker {
                 self?.finishWithResult([item.id])
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { [weak self] _ in
             self?.finishWithResult(nil)
         })
 

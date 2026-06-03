@@ -10,7 +10,7 @@ import UIKit
 final class SearchPreferencesViewController: SettingsTableViewController {
     init() {
         super.init(style: .insetGrouped)
-        title = "Search"
+        title = L("Search")
     }
     
     override func viewWillAppear(_ animated: Bool) {

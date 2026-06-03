@@ -21,7 +21,7 @@ final class CompatibilityPreferencesViewController: SettingsTableViewController 
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Compatibility"
+        title = L("Compatibility")
     }
     
     required init?(coder: NSCoder) {
@@ -205,7 +205,7 @@ final class UserAgentOverridesPreferencesViewController: UITableViewController {
             guard let text = alert?.textFields?.first?.text else { return }
             self?.insertDomain(text)
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel))
         alert.addAction(addAction)
         present(alert, animated: true)
     }

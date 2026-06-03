@@ -70,7 +70,7 @@ private func presentAlertPrompt(
             message: message.isEmpty ? nil : message,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
             continuation.resume()
         })
         presenter.present(alert, animated: true)
@@ -95,15 +95,15 @@ private func presentButtonPrompt(
         
         switch label {
         case "ok":
-            return "OK"
+            return NSLocalizedString("OK", comment: "")
         case "cancel":
-            return "Cancel"
+            return NSLocalizedString("Cancel", comment: "")
         case "yes":
             return "Yes"
         case "no":
             return "No"
         case "custom":
-            return customLabel.isEmpty ? "OK" : customLabel
+            return customLabel.isEmpty ? NSLocalizedString("OK", comment: "") : customLabel
         default:
             return ""
         }
@@ -139,7 +139,7 @@ private func presentButtonPrompt(
         }
         
         if alert.actions.isEmpty {
-            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
                 continuation.resume(returning: ["button": 0])
             })
         }
@@ -168,10 +168,10 @@ private func presentTextPrompt(
         alert.addTextField { textField in
             textField.text = value
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
             continuation.resume(returning: nil)
         })
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { _ in
             let text = alert.textFields?.first?.text ?? ""
             continuation.resume(returning: ["text": text])
         })
@@ -188,7 +188,7 @@ private func presentFolderUploadPrompt(
         return nil
     }
     
-    let title = "Confirm Upload"
+    let title = NSLocalizedString("Confirm Upload", comment: "")
     let message: String
     if directoryName.isEmpty {
         message = "Are you sure you want to upload all files? Only do this if you trust the site."
@@ -202,10 +202,10 @@ private func presentFolderUploadPrompt(
             message: message,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in
             continuation.resume(returning: ["allow": false])
         })
-        alert.addAction(UIAlertAction(title: "Upload", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Upload", comment: ""), style: .default) { _ in
             continuation.resume(returning: ["allow": true])
         })
         presenter.present(alert, animated: true)

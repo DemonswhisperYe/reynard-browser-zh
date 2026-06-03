@@ -112,7 +112,7 @@ final class SitePermissionsViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Site Permissions"
+        title = L("Site Permissions")
     }
     
     required init?(coder: NSCoder) {
@@ -591,9 +591,9 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
             ]
         default:
             return [
-                PermissionOption(title: "Ask", action: .askToAllow),
-                PermissionOption(title: "Allow", action: .allowed),
-                PermissionOption(title: "Deny", action: .blocked),
+                PermissionOption(title: L("Ask"), action: .askToAllow),
+                PermissionOption(title: L("Allow"), action: .allowed),
+                PermissionOption(title: L("Deny"), action: .blocked),
             ]
         }
     }
@@ -655,7 +655,7 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
     }
     
     private func makeClearConfiguration(for host: String) -> UISwipeActionsConfiguration {
-        let clearAction = UIContextualAction(style: .destructive, title: "Clear") { [weak self] _, _, completion in
+        let clearAction = UIContextualAction(style: .destructive, title: L("Clear")) { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return
@@ -701,11 +701,11 @@ private func permissionActionTitle(for action: SitePermissionAction, permission:
     default:
         switch action {
         case .allowed:
-            return "Allow"
+            return L("Allow")
         case .askToAllow:
-            return "Ask"
+            return L("Ask")
         case .blocked:
-            return "Deny"
+            return L("Deny")
         }
     }
 }

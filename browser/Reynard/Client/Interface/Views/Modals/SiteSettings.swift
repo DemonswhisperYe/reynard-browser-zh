@@ -397,7 +397,7 @@ final class SiteSettingsViewController: UITableViewController {
             ]
         }
         
-        return ["Allow", "Ask", "Deny"]
+        return [L("Allow"), L("Ask"), L("Deny")]
     }
     
     private func selectedIndex(for row: Row) -> Int {

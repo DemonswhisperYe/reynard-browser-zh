@@ -66,7 +66,7 @@ final class AddonsPreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Add-ons"
+        title = L("Add-ons")
     }
     
     required init?(coder: NSCoder) {
@@ -941,7 +941,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
             cell.selectionStyle = .none
             cell.accessoryView = privateBrowsingSwitch
         case .remove:
-            cell.textLabel?.text = "Remove"
+            cell.textLabel?.text = L("Remove")
             cell.textLabel?.textColor = addon == nil || isUpdatingAddon ? .secondaryLabel : .systemRed
         case .settings, .details, .permissions:
             break
@@ -966,13 +966,13 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
         
         switch navigationRows[indexPath.row] {
         case .settings:
-            cell.textLabel?.text = "Settings"
+            cell.textLabel?.text = L("Settings")
         case .details:
             cell.textLabel?.text = "Details"
         case .permissions:
             cell.textLabel?.text = "Permissions"
         case .remove:
-            cell.textLabel?.text = "Remove"
+            cell.textLabel?.text = L("Remove")
             cell.textLabel?.textColor = addon == nil || isUpdatingAddon ? .secondaryLabel : .systemRed
             cell.accessoryType = .none
         case .enabled, .privateBrowsing:
@@ -993,8 +993,8 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
             message: nil,
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Remove", style: .destructive) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel))
+        alert.addAction(UIAlertAction(title: L("Remove"), style: .destructive) { [weak self] _ in
             self?.removeAddon()
         })
         present(alert, animated: true)

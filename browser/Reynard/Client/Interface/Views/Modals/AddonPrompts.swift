@@ -51,7 +51,7 @@ final class AddonPromptViewController: UITableViewController {
         button.layer.cornerRadius = 25
         button.layer.cornerCurve = .continuous
         button.titleLabel?.font = .preferredFont(forTextStyle: .headline)
-        button.setTitle(prompt.kind == .install ? "Add" : "Allow", for: .normal)
+        button.setTitle(prompt.kind == .install ? L("Add") : L("Allow"), for: .normal)
         button.addTarget(self, action: #selector(confirmPrompt), for: .touchUpInside)
         return button
     }()

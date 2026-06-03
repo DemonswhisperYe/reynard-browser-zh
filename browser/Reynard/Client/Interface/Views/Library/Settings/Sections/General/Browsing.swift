@@ -12,7 +12,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Browsing"
+        title = L("Browsing")
     }
     
     required init?(coder: NSCoder) {

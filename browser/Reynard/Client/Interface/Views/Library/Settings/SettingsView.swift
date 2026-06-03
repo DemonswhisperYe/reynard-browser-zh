@@ -69,7 +69,7 @@ final class SettingsRootViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Settings"
+        title = L("Settings")
     }
     
     required init?(coder: NSCoder) {
@@ -238,27 +238,27 @@ private extension SettingsRootViewController {
         switch row {
         case .addons:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Add-ons"
+            cell.textLabel?.text = L("Add-ons")
             cell.accessoryType = .disclosureIndicator
             return cell
         case .browsing:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Browsing"
+            cell.textLabel?.text = L("Browsing")
             cell.accessoryType = .disclosureIndicator
             return cell
         case .search:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Search"
+            cell.textLabel?.text = L("Search")
             cell.accessoryType = .disclosureIndicator
             return cell
         case .appearance:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Appearance"
+            cell.textLabel?.text = L("Appearance")
             cell.accessoryType = .disclosureIndicator
             return cell
         case .compatibility:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Compatibility"
+            cell.textLabel?.text = L("Compatibility")
             cell.accessoryType = .disclosureIndicator
             return cell
         }
@@ -295,7 +295,7 @@ private extension SettingsRootViewController {
         switch row {
         case .sitePermissions:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Site Permissions"
+            cell.textLabel?.text = L("Site Permissions")
             cell.accessoryType = .disclosureIndicator
             return cell
         }
@@ -353,7 +353,7 @@ final class SettingsView: UIView {
 extension UIViewController {
     func presentAlert(title: String?, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: L("OK"), style: .default))
         present(alert, animated: true)
     }
 }

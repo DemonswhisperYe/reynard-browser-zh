@@ -571,7 +571,7 @@ final class DownloadsManagerView: UIView, UITableViewDataSource, UITableViewDele
         
         switch item.state {
         case .downloading:
-            let cancelAction = UIContextualAction(style: .destructive, title: "Cancel") { [weak self] _, _, completion in
+            let cancelAction = UIContextualAction(style: .destructive, title: L("Cancel")) { [weak self] _, _, completion in
                 self?.presentCancellationConfirmation(for: item, completion: completion)
             }
             let configuration = UISwipeActionsConfiguration(actions: [cancelAction])
