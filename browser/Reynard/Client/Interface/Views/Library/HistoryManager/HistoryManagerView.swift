@@ -514,7 +514,7 @@ private final class HistoryManagerViewController: UIViewController, UITableViewD
         }
         
         if calendar.isDateInYesterday(date) {
-            return "Yesterday"
+            return L("Yesterday")
         }
         
         let formatter = DateFormatter()

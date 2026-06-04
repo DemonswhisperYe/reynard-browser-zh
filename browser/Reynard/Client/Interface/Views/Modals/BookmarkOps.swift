@@ -219,7 +219,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == 2 ? "Location" : nil
+        section == 2 ? L("Location") : nil
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -439,7 +439,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        section == 1 ? "Location" : nil
+        section == 1 ? L("Location") : nil
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

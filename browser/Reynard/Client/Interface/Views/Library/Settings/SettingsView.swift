@@ -206,11 +206,11 @@ final class SettingsRootViewController: SettingsTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard visibleSections.indices.contains(section) else { return nil }
         switch visibleSections[section] {
-        case .updates: return "Update Available"
-        case .jit: return "JIT"
-        case .general: return "General"
-        case .privacy: return "Privacy"
-        case .about: return "About"
+        case .updates: return L("Update Available")
+        case .jit: return L("JIT")
+        case .general: return L("General")
+        case .privacy: return L("Privacy")
+        case .about: return L("About")
         }
     }
     

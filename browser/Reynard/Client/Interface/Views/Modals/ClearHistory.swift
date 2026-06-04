@@ -94,7 +94,7 @@ final class ClearHistoryViewController: UITableViewController {
             return nil
         }
         
-        return "This will close your \(tabCount) \(tabCount == 1 ? "tab" : "tabs")."
+        return tabCount == 1 ? String(format: L("This will close your %d tab."), tabCount) : String(format: L("This will close your %d tabs."), tabCount)
     }
     
     override func tableView(

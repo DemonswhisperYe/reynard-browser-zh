@@ -32,19 +32,19 @@ final class SitePermissionsViewController: SettingsTableViewController {
             case .autoplay:
                 return "Autoplay"
             case .camera:
-                return "Camera"
+                return L("Camera")
             case .microphone:
-                return "Microphone"
+                return L("Microphone")
             case .location:
-                return "Location"
+                return L("Location")
             case .persistentStorage:
-                return "Persistent Storage"
+                return L("Persistent Storage")
             case .crossSiteCookies:
-                return "Cross-site Cookies"
+                return L("Cross-site Cookies")
             case .localDeviceAccess:
-                return "Device Apps and Services"
+                return L("Device Apps and Services")
             case .localNetworkAccess:
-                return "Local Network Devices"
+                return L("Local Network Devices")
             }
         }
         
@@ -86,13 +86,13 @@ final class SitePermissionsViewController: SettingsTableViewController {
         var permissions: [String] = []
         
         if isCameraPermissionDisabled() {
-            permissions.append("Camera")
+            permissions.append(L("Camera"))
         }
         if isMicrophonePermissionDisabled() {
-            permissions.append("Microphone")
+            permissions.append(L("Microphone"))
         }
         if isLocationPermissionDisabled() {
-            permissions.append("Location")
+            permissions.append(L("Location"))
         }
         
         return permissions

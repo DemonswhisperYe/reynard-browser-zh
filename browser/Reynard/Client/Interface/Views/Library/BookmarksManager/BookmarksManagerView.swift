@@ -616,7 +616,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
             return false
         })
         return [
-            ("Folders", folders),
+            (L("Folders"), folders),
             (L("Bookmarks"), bookmarks),
         ].filter { !$0.items.isEmpty }
     }

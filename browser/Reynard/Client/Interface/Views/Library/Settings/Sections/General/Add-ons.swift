@@ -55,13 +55,13 @@ final class AddonsPreferencesViewController: SettingsTableViewController {
     
     private var updateActionTitle: String {
         if isUpdatingAddons {
-            return "Updating Add-ons..."
+            return L("Updating Add-ons...")
         }
         if let browserViewController = resolvedBrowserViewController(),
            browserViewController.addonController.updateController.hasPendingApprovals {
-            return "Complete Add-on Updates"
+            return L("Complete Add-on Updates")
         }
-        return "Update All Add-ons"
+        return L("Update All Add-ons")
     }
     
     init() {

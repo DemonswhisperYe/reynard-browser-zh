@@ -453,7 +453,7 @@ final class DownloadsManagerView: UIView, UITableViewDataSource, UITableViewDele
             resolvedSections.append(Section(title: "Today", items: todayItems))
         }
         if !yesterdayItems.isEmpty {
-            resolvedSections.append(Section(title: "Yesterday", items: yesterdayItems))
+            resolvedSections.append(Section(title: L("Yesterday"), items: yesterdayItems))
         }
         if !previousSevenDayItems.isEmpty {
             resolvedSections.append(Section(title: L("Previous 7 Days"), items: previousSevenDayItems))
