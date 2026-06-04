@@ -187,7 +187,7 @@ final class FilePicker: NSObject {
     
     private func buildMenu() -> UIMenu {
         let photoAction = UIAction(
-            title: "Photo Library",
+            title: NSLocalizedString("Photo Library", comment: ""),
             image: UIImage(systemName: "photo.on.rectangle"),
             attributes: canUsePhotoLibrary ? [] : .disabled
         ) { [weak self] _ in
@@ -206,7 +206,7 @@ final class FilePicker: NSObject {
             }
         }
         
-        let chooserTitle = mode == .folder ? "Choose Folder" : "Choose File"
+        let chooserTitle = mode == .folder ? NSLocalizedString("Choose Folder", comment: "") : NSLocalizedString("Choose File", comment: "")
         let chooserAction = UIAction(
             title: chooserTitle,
             image: UIImage(systemName: "doc"),
@@ -273,13 +273,13 @@ final class FilePicker: NSObject {
         
         switch (supportsImages, supportsVideos) {
         case (true, true):
-            return "Take Photo or Video"
+            return NSLocalizedString("Take Photo or Video", comment: "")
         case (true, false):
-            return "Take Photo"
+            return NSLocalizedString("Take Photo", comment: "")
         case (false, true):
-            return "Take Video"
+            return NSLocalizedString("Take Video", comment: "")
         case (false, false):
-            return "Take Photo"
+            return NSLocalizedString("Take Photo", comment: "")
         }
     }
     
@@ -306,11 +306,11 @@ final class FilePicker: NSObject {
             return
         }
         
-        let chooserTitle = mode == .folder ? "Choose Folder" : "Choose File"
+        let chooserTitle = mode == .folder ? NSLocalizedString("Choose Folder", comment: "") : NSLocalizedString("Choose File", comment: "")
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         if canUsePhotoLibrary {
-            alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { [weak self] _ in
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Photo Library", comment: ""), style: .default) { [weak self] _ in
                 self?.launchFollowupPicker {
                     self?.performAction(.photoLibrary)
                 }

@@ -141,7 +141,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = showsFavoritesHierarchyOnly ? "Add to Favorites" : (bookmark == nil ? "Add Bookmark" : "Edit Bookmark")
+        title = showsFavoritesHierarchyOnly ? L("Add to Favorites") : (bookmark == nil ? L("Add Bookmark") : L("Edit Bookmark"))
         view.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
         
@@ -268,7 +268,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.backgroundColor = .secondarySystemGroupedBackground
             cell.tintColor = .systemBlue
-            cell.textLabel?.text = "New Folder"
+            cell.textLabel?.text = L("New Folder")
             cell.textLabel?.textColor = .systemBlue
             cell.imageView?.image = UIImage(systemName: "folder.badge.plus")?.withRenderingMode(.alwaysTemplate)
             return cell
@@ -400,7 +400,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Folder"
+        title = L("New Folder")
         view.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
         

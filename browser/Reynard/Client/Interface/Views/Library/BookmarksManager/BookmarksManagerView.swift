@@ -68,7 +68,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
         parentFolderGUID == nil
     }
     private lazy var newFolderButtonItem = UIBarButtonItem(
-        title: "New Folder",
+        title: L("New Folder"),
         style: .plain,
         target: self,
         action: #selector(promptForNewFolder)
@@ -78,7 +78,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Search Bookmarks"
+        searchBar.placeholder = L("Search Bookmarks")
         searchBar.delegate = self
         return searchBar
     }()
@@ -120,7 +120,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
     }()
     private let emptyStateLabel: UILabel = {
         let label = UILabel()
-        label.text = "No matching bookmarks"
+        label.text = L("No matching bookmarks")
         label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .secondaryLabel
         label.textAlignment = .center
@@ -515,7 +515,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
         UIMenu(title: "", children: [
             makeSortMenu(),
             UIAction(
-                title: "Show Folders on Top",
+                title: L("Show Folders on Top"),
                 image: UIImage(named: "text.below.folder"),
                 state: Prefs.BookmarkSettings.placeFoldersOnTop ? .on : .off
             ) { [weak self] _ in
@@ -524,10 +524,10 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
                 self?.updateSearchActionsButton()
             },
             UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [
-                UIAction(title: "Edit Bookmarks", image: UIImage(systemName: "pencil")) { [weak self] _ in
+                UIAction(title: L("Edit Bookmarks"), image: UIImage(systemName: "pencil")) { [weak self] _ in
                     self?.setEditing(true, animated: true)
                 },
-                UIAction(title: "New Folder", image: UIImage(systemName: "folder.badge.plus")) { [weak self] _ in
+                UIAction(title: L("New Folder"), image: UIImage(systemName: "folder.badge.plus")) { [weak self] _ in
                     self?.promptForNewFolder()
                 },
             ]),
@@ -543,7 +543,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
             ("Address", .address),
         ]
         let menu = UIMenu(
-            title: "Sort By",
+            title: L("Sort By"),
             image: UIImage(systemName: "arrow.up.arrow.down"),
             identifier: nil,
             options: [],

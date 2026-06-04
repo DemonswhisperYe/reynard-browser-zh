@@ -124,13 +124,13 @@ final class SettingsRootViewController: SettingsTableViewController {
             return makeUpdateNowCell()
         case .jit where indexPath.row == 0:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Enable JIT"
+            cell.textLabel?.text = L("Enable JIT")
             cell.selectionStyle = .none
             cell.accessoryView = jitSwitch
             return cell
         case .jit:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Import Pairing File..."
+            cell.textLabel?.text = L("Import Pairing File...")
             cell.textLabel?.textColor = view.tintColor
             // if on 16.6 to 17.3.1, disable the cell.
             if #available(iOS 16.6, *) {
@@ -152,21 +152,21 @@ final class SettingsRootViewController: SettingsTableViewController {
                 let info = Bundle.main.infoDictionary
                 let version = info?["CFBundleShortVersionString"] as? String ?? "Unknown"
                 let build = info?["CFBundleVersion"] as? String ?? "Unknown"
-                cell.textLabel?.text = "Reynard Browser"
+                cell.textLabel?.text = L("Reynard Browser")
                 cell.detailTextLabel?.text = "\(version) (\(build))"
                 cell.detailTextLabel?.textColor = .secondaryLabel
                 cell.selectionStyle = .none
                 cell.accessoryType = .none
                 return cell
             case 1:
-                cell.textLabel?.text = "Engine Version"
+                cell.textLabel?.text = L("Engine Version")
                 cell.detailTextLabel?.text = GeckoRuntime.version
                 cell.detailTextLabel?.textColor = .secondaryLabel
                 cell.selectionStyle = .none
                 cell.accessoryType = .none
                 return cell
-            case 2: cell.textLabel?.text = "View Source Code"
-            case 3: cell.textLabel?.text = "Support The Project"
+            case 2: cell.textLabel?.text = L("View Source Code")
+            case 3: cell.textLabel?.text = L("Support The Project")
             case 4: cell.textLabel?.text = "GitHub - @minh-ton"
             default: cell.textLabel?.text = nil
             }

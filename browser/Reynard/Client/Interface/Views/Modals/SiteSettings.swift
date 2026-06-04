@@ -118,7 +118,7 @@ final class SiteSettingsViewController: UITableViewController {
         self.session = session
         self.store = store
         super.init(style: .insetGrouped)
-        title = "Settings for \(host)"
+        title = String(format: L("Settings for %@"), host)
     }
     
     required init?(coder: NSCoder) {
@@ -197,7 +197,7 @@ final class SiteSettingsViewController: UITableViewController {
             }
             
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Open Settings"
+            cell.textLabel?.text = L("Open Settings")
             cell.textLabel?.textColor = view.tintColor
             cell.accessoryType = .none
             return cell
@@ -205,10 +205,10 @@ final class SiteSettingsViewController: UITableViewController {
         
         if visibleSections[indexPath.section] == .websiteActions {
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-            cell.textLabel?.text = "Reset Permissions for this Site"
+            cell.textLabel?.text = L("Reset Permissions for this Site")
             cell.textLabel?.textColor = .systemRed
             if didResetPermissions {
-                cell.detailTextLabel?.text = "Successfully reset permissions for this site."
+                cell.detailTextLabel?.text = L("Successfully reset permissions for this site.")
             } else {
                 cell.detailTextLabel?.text = nil
             }

@@ -145,7 +145,7 @@ final class DownloadItemCell: UITableViewCell {
             
             var detailsText = downloadedText
             if let sizeText {
-                detailsText += " of \(sizeText)"
+                detailsText += String(format: L(" of %@"), sizeText)
             }
             if let speedText {
                 detailsText += " (\(speedText))"
@@ -170,7 +170,7 @@ final class DownloadItemCell: UITableViewCell {
         case .completed:
             representedItemID = item.id
             lastDetailsLabelUpdateTime = 0
-            detailsLabel.text = item.fileExists ? (item.totalBytes.map { Self.formattedByteCount($0) } ?? "Unknown size") : "Deleted"
+            detailsLabel.text = item.fileExists ? (item.totalBytes.map { Self.formattedByteCount($0) } ?? L("Unknown size")) : L("Deleted")
             progressView.isHidden = true
             progressView.progress = 0
             iconView.transform = .identity

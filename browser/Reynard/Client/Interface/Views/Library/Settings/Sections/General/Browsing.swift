@@ -41,7 +41,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.selectionStyle = .none
-        cell.textLabel?.text = "All Website"
+        cell.textLabel?.text = L("All Website")
         cell.accessoryView = requestDesktopWebsiteSwitch
         
         return cell

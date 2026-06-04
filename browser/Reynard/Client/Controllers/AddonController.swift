@@ -366,7 +366,7 @@ final class AddonController: NSObject, AddonEmbedderDelegate {
         }
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        alert.addAction(UIAlertAction(title: L("OK"), style: .default))
         presenter.present(alert, animated: true)
     }
     

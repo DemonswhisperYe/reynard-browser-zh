@@ -199,21 +199,21 @@ final class JITController {
             return
         }
         
-        let description = error.localizedDescription.isEmpty ? "Unknown error." : error.localizedDescription
+        let description = error.localizedDescription.isEmpty ? L("Unknown error.") : error.localizedDescription
         let messageText: String
         if usePtraceJIT() {
-            messageText = "It's extremely rare that you encounter this issue! Make sure that your TrollStore installation or jailbroken environment is properly configured.\n\nYou may use the browser without JIT temporarily until the next launch by activating JIT-Less Mode."
+            messageText = L("It's extremely rare that you encounter this issue! Make sure that your TrollStore installation or jailbroken environment is properly configured.\n\nYou may use the browser without JIT temporarily until the next launch by activating JIT-Less Mode.")
         } else {
-            messageText = "Please check that your pairing file is valid, your loopback VPN is on, and you're connected to a stable Wi-Fi network.\n\nYou may use the browser without JIT temporarily until the next launch by activating JIT-Less Mode."
+            messageText = L("Please check that your pairing file is valid, your loopback VPN is on, and you're connected to a stable Wi-Fi network.\n\nYou may use the browser without JIT temporarily until the next launch by activating JIT-Less Mode.")
         }
         
         let viewController = JITFailureViewController(
             errorCode: error.code,
             errorDescription: description,
             showsErrorDetails: showsErrorDetails,
-            titleText: "Failed to enable JIT",
+            titleText: L("Failed to enable JIT"),
             messageText: messageText,
-            actionButtonTitle: "Activate JIT-Less Mode",
+            actionButtonTitle: L("Activate JIT-Less Mode"),
             onPrimaryAction: { [weak self] in
                 self?.activateJITLessMode()
             }
@@ -244,11 +244,11 @@ final class JITController {
         
         let viewController = JITFailureViewController(
             errorCode: Int(ENOENT),
-            errorDescription: "Required DDI files are missing.",
+            errorDescription: L("Required DDI files are missing."),
             showsErrorDetails: false,
-            titleText: "Failed to enable JIT",
-            messageText: "The required Developer Disk Image files for enabling JIT were not found.\n\nJIT has been disabled. Quit the app using the button below, then re-enable JIT from the browser settings.",
-            actionButtonTitle: "Quit Reynard",
+            titleText: L("Failed to enable JIT"),
+            messageText: L("The required Developer Disk Image files for enabling JIT were not found.\n\nJIT has been disabled. Quit the app using the button below, then re-enable JIT from the browser settings."),
+            actionButtonTitle: L("Quit Reynard"),
             onPrimaryAction: {
                 self.disableJITAndQuit()
             }

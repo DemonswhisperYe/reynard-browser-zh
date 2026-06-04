@@ -190,7 +190,7 @@ final class AppearancePreferencesViewController: SettingsTableViewController {
         }
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "Landscape Tab Bar"
+        cell.textLabel?.text = L("Landscape Tab Bar")
         cell.selectionStyle = .none
         cell.accessoryView = landscapeTabBarSwitch
         return cell

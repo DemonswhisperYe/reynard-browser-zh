@@ -176,7 +176,7 @@ final class TabOverviewBarButtons {
     }
     
     func setTabCount(_ tabCount: Int) {
-        modeControl.setTitle("\(tabCount)" + (tabCount == 1 ? " Tab" : " Tabs"), forSegmentAt: TabOverviewCollection.Mode.regularTabs.rawValue)
+        modeControl.setTitle(tabCount == 1 ? String(format: L("%d Tab"), tabCount) : String(format: L("%d Tabs"), tabCount), forSegmentAt: TabOverviewCollection.Mode.regularTabs.rawValue)
         
         // Unrelated, too lazy to make a separate func
         let hasVisibleTab: Bool

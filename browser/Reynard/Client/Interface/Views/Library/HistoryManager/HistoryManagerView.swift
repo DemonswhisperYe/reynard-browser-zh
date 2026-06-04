@@ -72,7 +72,7 @@ private final class HistoryManagerViewController: UIViewController, UITableViewD
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Search History"
+        searchBar.placeholder = L("Search History")
         searchBar.delegate = self
         return searchBar
     }()
@@ -122,7 +122,7 @@ private final class HistoryManagerViewController: UIViewController, UITableViewD
         return view
     }()
     
-    private let emptyStateView = LibraryEmptyBackgroundView(message: "Your browsing history appears here")
+    private let emptyStateView = LibraryEmptyBackgroundView(message: L("Your browsing history appears here"))
     private var sections: [Section] = []
     private var historyObserver: NSObjectProtocol?
     private var currentFetchOffset = 0
@@ -482,7 +482,7 @@ private final class HistoryManagerViewController: UIViewController, UITableViewD
     
     private func updateBackgroundView() {
         let hasHistory = !sections.isEmpty
-        emptyStateView.message = currentSearchTerm.isEmpty ? "Your browsing history appears here" : "No matching history"
+        emptyStateView.message = currentSearchTerm.isEmpty ? L("Your browsing history appears here") : L("No matching history")
         tableView.backgroundView = hasHistory ? nil : emptyStateView
         emptyStateView.updateContentInsets(from: tableView)
     }

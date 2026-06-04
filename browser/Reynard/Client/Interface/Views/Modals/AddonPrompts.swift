@@ -192,7 +192,7 @@ final class AddonPromptViewController: UITableViewController {
                 cell.textLabel?.text = value
             case .showAllSites:
                 cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-                cell.textLabel?.text = "Show All Sites"
+                cell.textLabel?.text = L("Show All Sites")
                 cell.textLabel?.textColor = view.tintColor
                 cell.selectionStyle = .default
                 cell.accessoryType = .disclosureIndicator
@@ -207,7 +207,7 @@ final class AddonPromptViewController: UITableViewController {
             }
         case .options:
             cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-            cell.textLabel?.text = "Allow in Private Browsing"
+            cell.textLabel?.text = L("Allow in Private Browsing")
             cell.accessoryView = privateBrowsingSwitch
         }
         
@@ -255,14 +255,14 @@ final class AddonPromptViewController: UITableViewController {
         
         switch prompt.kind {
         case .install:
-            return "Add \(addonName)?"
+            return String(format: L("Add %@?"), addonName)
         case .optional:
             if prompt.permissions.isEmpty && prompt.origins.isEmpty && !prompt.dataCollectionPermissions.isEmpty {
-                return "\(addonName) requests additional data collection."
+                return String(format: L("%@ requests additional data collection."), addonName)
             }
-            return "\(addonName) requests additional permissions."
+            return String(format: L("%@ requests additional permissions."), addonName)
         case .update:
-            return "\(addonName) has been updated. You must approve additional permissions before the updated version will install. Dismissing this prompt will maintain your current add-on version."
+            return String(format: L("%@ has been updated. You must approve additional permissions before the updated version will install. Dismissing this prompt will maintain your current add-on version."), addonName)
         }
     }
     
@@ -270,7 +270,7 @@ final class AddonPromptViewController: UITableViewController {
         var items: [DisplayItem] = []
         
         if !domainRows.isEmpty {
-            items.append(.domainHeader("Access your data for sites in \(domainRows.count) domains"))
+            items.append(.domainHeader(String(format: L("Access your data for sites in %d domains"), domainRows.count)))
             items.append(.showAllSites)
         }
         
