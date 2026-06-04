@@ -68,6 +68,8 @@ jobs:
 
       - name: Init source submodules
         run: |
+          rm -rf support/idevice engine/firefox
+          git submodule sync --recursive
           git submodule update --init --recursive support/idevice
           git submodule update --init engine/firefox
 
