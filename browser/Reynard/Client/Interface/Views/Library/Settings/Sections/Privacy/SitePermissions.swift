@@ -414,13 +414,13 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         
         switch visibleSections[section] {
         case .defaultBehavior:
-            return "Default Behavior"
+            return L("Default Behavior")
         case .allowedSites:
-            return "Allowed Sites"
+            return L("Allowed Sites")
         case .deniedSites:
-            return "Denied Sites"
+            return L("Denied Sites")
         case .changedSites:
-            return "Changed Sites"
+            return L("Changed Sites")
         }
     }
     
@@ -692,11 +692,11 @@ private func permissionActionTitle(for action: SitePermissionAction, permission:
     case .autoplay:
         switch action {
         case .allowed:
-            return "Allow Audio and Video"
+            return L("Allow Audio and Video")
         case .askToAllow:
-            return "Block Audio only"
+            return L("Block Audio only")
         case .blocked:
-            return "Block Audio and Video"
+            return L("Block Audio and Video")
         }
     default:
         switch action {

@@ -35,7 +35,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Request Desktop Website On"
+        L("Request Desktop Website On")
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

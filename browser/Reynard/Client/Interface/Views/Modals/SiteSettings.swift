@@ -391,9 +391,9 @@ final class SiteSettingsViewController: UITableViewController {
     private func options(for row: Row) -> [String] {
         if row == .autoplay {
             return [
-                "Allow Audio and Video",
-                "Block Audio only",
-                "Block Audio and Video",
+                L("Allow Audio and Video"),
+                L("Block Audio only"),
+                L("Block Audio and Video"),
             ]
         }
         
