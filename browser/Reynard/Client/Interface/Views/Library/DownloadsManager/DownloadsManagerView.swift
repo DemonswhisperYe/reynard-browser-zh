@@ -579,7 +579,7 @@ final class DownloadsManagerView: UIView, UITableViewDataSource, UITableViewDele
             return configuration
             
         case .completed:
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+            let deleteAction = UIContextualAction(style: .destructive, title: L("Delete")) { _, _, completion in
                 DownloadStore.shared.deleteDownloadedItem(id: item.id)
                 completion(true)
             }
@@ -590,7 +590,7 @@ final class DownloadsManagerView: UIView, UITableViewDataSource, UITableViewDele
                 return configuration
             }
             
-            let shareAction = UIContextualAction(style: .normal, title: "Share") { [weak self] _, _, completion in
+            let shareAction = UIContextualAction(style: .normal, title: L("Share")) { [weak self] _, _, completion in
                 guard let self else {
                     completion(false)
                     return

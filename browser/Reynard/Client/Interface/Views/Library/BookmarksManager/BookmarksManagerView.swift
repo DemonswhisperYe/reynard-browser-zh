@@ -377,7 +377,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
             return nil
         }
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: L("Delete")) { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return

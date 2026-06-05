@@ -30,7 +30,7 @@ final class SitePermissionsViewController: SettingsTableViewController {
         var title: String {
             switch self {
             case .autoplay:
-                return "Autoplay"
+                return L("Autoplay")
             case .camera:
                 return L("Camera")
             case .microphone:
