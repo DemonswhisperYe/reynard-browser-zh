@@ -86,13 +86,13 @@ final class SitePermissionsViewController: SettingsTableViewController {
         var permissions: [String] = []
         
         if isCameraPermissionDisabled() {
-            permissions.append(L("Camera"))
+            permissions.append("Camera")
         }
         if isMicrophonePermissionDisabled() {
-            permissions.append(L("Microphone"))
+            permissions.append("Microphone")
         }
         if isLocationPermissionDisabled() {
-            permissions.append(L("Location"))
+            permissions.append("Location")
         }
         
         return permissions
@@ -161,7 +161,7 @@ final class SitePermissionsViewController: SettingsTableViewController {
             }
             
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = L("Open Settings")
+            cell.textLabel?.text = "Open Settings"
             cell.textLabel?.textColor = view.tintColor
             cell.accessoryType = .none
             return cell
@@ -192,10 +192,10 @@ final class SitePermissionsViewController: SettingsTableViewController {
             return cell
         case .websiteActions:
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-            cell.textLabel?.text = L("Reset Permissions for all Sites")
+            cell.textLabel?.text = "Reset Permissions for all Sites"
             cell.textLabel?.textColor = .systemRed
             if didResetPermissionsForAllSites {
-                cell.detailTextLabel?.text = L("Successfully reset permissions for all sites.")
+                cell.detailTextLabel?.text = "Successfully reset permissions for all sites."
             } else {
                 cell.detailTextLabel?.text = nil
             }
@@ -298,10 +298,10 @@ final class SitePermissionsViewController: SettingsTableViewController {
         let permissionList = formattedPermissionList(names)
         
         if names.count == 1 {
-            return String(format: L("%@ is currently disabled for Reynard. Open the Settings app to enable this permission."), permissionList)
+            return "\(permissionList) is currently disabled for Reynard. Open the Settings app to enable this permission."
         }
         
-        return String(format: L("%@ are currently disabled for Reynard. Open the Settings app to enable these permissions."), permissionList)
+        return "\(permissionList) are currently disabled for Reynard. Open the Settings app to enable these permissions."
     }
     
     private func formattedPermissionList(_ names: [String]) -> String {
@@ -314,12 +314,12 @@ final class SitePermissionsViewController: SettingsTableViewController {
         }
         
         if names.count == 2 {
-            return String(format: L("%@ and %@"), names[0], names[1])
+            return "\(names[0]) and \(names[1])"
         }
         
         let head = names.dropLast().joined(separator: ", ")
         let tail = names[names.count - 1]
-        return String(format: L("%@, and %@"), head, tail)
+        return "\(head), and \(tail)"
     }
     
     private func openAppSettings() {
@@ -414,13 +414,13 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         
         switch visibleSections[section] {
         case .defaultBehavior:
-            return L("Default Behavior")
+            return "Default Behavior"
         case .allowedSites:
-            return L("Allowed Sites")
+            return "Allowed Sites"
         case .deniedSites:
-            return L("Denied Sites")
+            return "Denied Sites"
         case .changedSites:
-            return L("Changed Sites")
+            return "Changed Sites"
         }
     }
     
@@ -442,7 +442,7 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         case .allowedSites:
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             if allowedSites.isEmpty {
-                cell.textLabel?.text = L("No Sites Added")
+                cell.textLabel?.text = "No Sites Added"
                 cell.textLabel?.textColor = .secondaryLabel
                 cell.detailTextLabel?.text = nil
                 cell.selectionStyle = .none
@@ -461,7 +461,7 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         case .deniedSites:
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             if deniedSites.isEmpty {
-                cell.textLabel?.text = L("No Sites Added")
+                cell.textLabel?.text = "No Sites Added"
                 cell.textLabel?.textColor = .secondaryLabel
                 cell.detailTextLabel?.text = nil
                 cell.selectionStyle = .none
@@ -480,7 +480,7 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         case .changedSites:
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             if changedSites.isEmpty {
-                cell.textLabel?.text = L("No Sites Added")
+                cell.textLabel?.text = "No Sites Added"
                 cell.textLabel?.textColor = .secondaryLabel
                 cell.detailTextLabel?.text = nil
                 cell.selectionStyle = .none
@@ -585,9 +585,9 @@ private final class SitePermissionDetailsViewController: SettingsTableViewContro
         switch permission {
         case .autoplay:
             return [
-                PermissionOption(title: L("Allow Audio and Video"), action: .allowed),
-                PermissionOption(title: L("Block Audio only"), action: .askToAllow),
-                PermissionOption(title: L("Block Audio and Video"), action: .blocked),
+                PermissionOption(title: "Allow Audio and Video", action: .allowed),
+                PermissionOption(title: "Block Audio only", action: .askToAllow),
+                PermissionOption(title: "Block Audio and Video", action: .blocked),
             ]
         default:
             return [
@@ -692,11 +692,11 @@ private func permissionActionTitle(for action: SitePermissionAction, permission:
     case .autoplay:
         switch action {
         case .allowed:
-            return L("Allow Audio and Video")
+            return "Allow Audio and Video"
         case .askToAllow:
-            return L("Block Audio only")
+            return "Block Audio only"
         case .blocked:
-            return L("Block Audio and Video")
+            return "Block Audio and Video"
         }
     default:
         switch action {
