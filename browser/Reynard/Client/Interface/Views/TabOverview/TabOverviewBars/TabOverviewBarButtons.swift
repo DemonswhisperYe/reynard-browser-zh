@@ -55,7 +55,7 @@ final class TabOverviewBarButtons {
     }()
     
     lazy var modeControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: ["Private", "0 Tabs"])
+        let control = UISegmentedControl(items: [L("Private"), String(format: L("%d Tabs"), 0)])
         control.translatesAutoresizingMaskIntoConstraints = false
         control.selectedSegmentIndex = TabOverviewCollection.Mode.regularTabs.rawValue
         control.addTarget(controller, action: #selector(BrowserViewController.tabOverviewModeChanged(_:)), for: .valueChanged)

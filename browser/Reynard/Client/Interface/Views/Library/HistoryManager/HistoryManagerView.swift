@@ -510,7 +510,7 @@ private final class HistoryManagerViewController: UIViewController, UITableViewD
     private func sectionTitle(for date: Date) -> String {
         let calendar = Calendar.current
         if calendar.isDateInToday(date) {
-            return "Today"
+            return L("Today")
         }
         
         if calendar.isDateInYesterday(date) {

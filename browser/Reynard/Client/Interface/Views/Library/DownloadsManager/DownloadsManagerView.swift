@@ -450,7 +450,7 @@ final class DownloadsManagerView: UIView, UITableViewDataSource, UITableViewDele
         
         var resolvedSections: [Section] = []
         if !todayItems.isEmpty {
-            resolvedSections.append(Section(title: "Today", items: todayItems))
+            resolvedSections.append(Section(title: L("Today"), items: todayItems))
         }
         if !yesterdayItems.isEmpty {
             resolvedSections.append(Section(title: L("Yesterday"), items: yesterdayItems))

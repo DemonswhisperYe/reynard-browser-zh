@@ -156,6 +156,7 @@
 "Clear Timeframe" = "清除时间范围";
 "Additional Options" = "其他选项";
 "Close All Tabs" = "关闭所有标签页";
+"Private" = "隐私";
 "Settings for %@" = "%@ 的设置";
 "Reset Permissions for this Site" = "重置此网站的权限";
 "Successfully reset permissions for this site." = "已成功重置此网站的权限。";
