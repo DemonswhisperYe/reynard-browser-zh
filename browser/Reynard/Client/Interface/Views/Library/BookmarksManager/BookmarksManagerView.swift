@@ -390,7 +390,7 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         
-        let editAction = UIContextualAction(style: .normal, title: L("Edit")) { [weak self] _, _, completion in
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return
@@ -537,10 +537,10 @@ private final class BookmarksFolderViewController: UIViewController, UITableView
     private func makeSortMenu() -> UIMenu {
         let selectedOrder = Prefs.BookmarkSettings.sortOrders
         let sortOptions: [(title: String, order: BookmarkSortOrder)] = [
-            (L("None"), .none),
-            (L("Date Added"), .date_added),
-            (L("Name"), .name),
-            (L("Address"), .address),
+            ("None", .none),
+            ("Date Added", .date_added),
+            ("Name", .name),
+            ("Address", .address),
         ]
         let menu = UIMenu(
             title: L("Sort By"),

@@ -86,7 +86,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
         textField.clearButtonMode = .whileEditing
         textField.font = .preferredFont(forTextStyle: .body)
         textField.adjustsFontForContentSizeCategory = true
-        textField.placeholder = L("Title")
+        textField.placeholder = "Title"
         textField.text = bookmark?.title ?? initialBookmarkTitle
         textField.delegate = self
         textField.addTarget(self, action: #selector(updateDoneButtonState), for: .editingChanged)
@@ -156,7 +156,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
                 navigationItem.leftBarButtonItems?.first?.tintColor = .label
             }
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: L("Save"), style: .done, target: self, action: #selector(saveBookmark))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveBookmark))
         }
         
         view.addSubview(tableView)
@@ -380,7 +380,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
         textField.clearButtonMode = .whileEditing
         textField.font = .preferredFont(forTextStyle: .body)
         textField.adjustsFontForContentSizeCategory = true
-        textField.placeholder = L("Title")
+        textField.placeholder = "Title"
         textField.delegate = self
         textField.addTarget(self, action: #selector(updateDoneButtonState), for: .editingChanged)
         return textField
@@ -410,7 +410,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(createFolder))
             navigationItem.rightBarButtonItem?.tintColor = .label
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: L("Save"), style: .done, target: self, action: #selector(createFolder))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(createFolder))
         }
         
         view.addSubview(tableView)
@@ -564,7 +564,7 @@ private final class BookmarkOperationFolderCell: UITableViewCell {
     
     func apply(folder: BookmarkFolderSnapshot, depth: Int, isSelected: Bool) {
         currentDepth = depth
-        folderTitleLabel.text = (folder.parentGUID == nil || folder.isProtected) ? L(folder.title) : folder.title
+        folderTitleLabel.text = folder.title
         iconLeadingConstraint?.constant = CGFloat(depth) * hierarchyIndentWidth
         folderIconView.tintColor = isSelected ? .systemBlue : .secondaryLabel
         
