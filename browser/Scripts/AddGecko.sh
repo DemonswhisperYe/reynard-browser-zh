@@ -45,6 +45,14 @@ mkdir -p "${GECKOVIEW_FW_FRAMEWORKS}/default-theme"
 cp -RfL "${DEFAULT_THEME_SRC}/" "${GECKOVIEW_FW_FRAMEWORKS}/default-theme/"
 echo "resource default-theme file:default-theme/" >> "${GECKOVIEW_FW_FRAMEWORKS}/chrome.manifest"
 
+# Prefer Simplified Chinese for website content negotiation.
+# Gecko reads defaults/pref/*.js at startup; a lexically-late file overrides
+# earlier packaged defaults without touching a user's explicit preferences.
+mkdir -p "${GECKOVIEW_FW_FRAMEWORKS}/defaults/pref"
+cat > "${GECKOVIEW_FW_FRAMEWORKS}/defaults/pref/zz-reynard-zh-hans.js" <<'EOF'
+pref("intl.accept_languages", "zh-CN,zh,en-US,en");
+EOF
+
 # sign the GeckoView.framework
 if [ "${CODE_SIGNING_ALLOWED:-YES}" = "NO" ] || [ "${CI:-}" = "true" ]; then
 	if command -v ldid >/dev/null 2>&1; then
