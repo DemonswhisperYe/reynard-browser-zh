@@ -136,7 +136,7 @@ extension BrowserViewController {
         alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { [weak self] _ in
             self?.finishDownloadConfirmation(startDownload: false)
         })
-        alert.addAction(UIAlertAction(title: "Download", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L("Download"), style: .default) { [weak self] _ in
             self?.downloadHaptic.notificationOccurred(.success)
             self?.finishDownloadConfirmation(startDownload: true)
         })

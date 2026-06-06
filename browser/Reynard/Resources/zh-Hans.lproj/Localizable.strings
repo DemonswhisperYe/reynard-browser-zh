@@ -209,3 +209,11 @@
 "Allowed Sites" = "允许的网站";
 "Denied Sites" = "拒绝的网站";
 "Changed Sites" = "已更改的网站";
+"Edit" = "编辑";
+"Download" = "下载";
+"Save" = "保存";
+"Title" = "标题";
+"None" = "无";
+"Date Added" = "添加日期";
+"Name" = "名称";
+"Address" = "地址";
