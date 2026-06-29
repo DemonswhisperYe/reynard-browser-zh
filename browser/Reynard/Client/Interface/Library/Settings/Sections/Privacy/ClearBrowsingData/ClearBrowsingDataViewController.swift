@@ -218,12 +218,12 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
     @objc private func confirmClearBrowsingData() {
         AlertPresenter.show(
             title: nil,
-            message: "This action will clear all of your browsing data. It cannot be undone.",
+            message: L("This action will clear all of your browsing data. It cannot be undone."),
             buttons: [
-                AlertPresenter.Button(title: "OK", style: .destructive) { [weak self] in
+                AlertPresenter.Button(title: L("OK"), style: .destructive) { [weak self] in
                     self?.clearSelectedData()
                 },
-                AlertPresenter.Button(title: "Cancel"),
+                AlertPresenter.Button(title: L("Cancel")),
             ]
         )
     }
@@ -284,7 +284,7 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
                 try await GeckoStorageController.clearData(flags: GeckoStorageClearFlags.allCaches)
             }
         } catch {
-            AlertPresenter.show(title: "Failed to clear browsing data", message: "\(error)")
+            AlertPresenter.show(title: L("Failed to clear browsing data"), message: "\(error)")
         }
     }
 }

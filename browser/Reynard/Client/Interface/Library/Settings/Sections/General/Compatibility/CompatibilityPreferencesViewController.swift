@@ -73,13 +73,13 @@ final class CompatibilityPreferencesViewController: SettingsTableViewController 
         switch row {
         case .useAndroidUserAgent:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Use Android User Agent"
+            cell.textLabel?.text = L("Use Android User Agent")
             cell.selectionStyle = .none
             cell.accessoryView = androidUserAgentSwitch
             return cell
         case .userAgentOverrides:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "User Agent Overrides"
+            cell.textLabel?.text = L("User Agent Overrides")
             cell.accessoryType = .disclosureIndicator
             return cell
         }

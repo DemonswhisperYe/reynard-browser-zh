@@ -162,7 +162,7 @@ final class PerformanceRecommendationViewController: UIViewController, HomepageR
     
     private lazy var primaryActionButton: UIButton = {
         return makeActionButton(
-            title: "Learn More",
+            title: L("Learn More"),
             imageName: "reynard.arrow.up.right",
             action: #selector(performPrimaryAction)
         )
@@ -170,7 +170,7 @@ final class PerformanceRecommendationViewController: UIViewController, HomepageR
     
     private lazy var secondaryActionButton: UIButton = {
         return makeActionButton(
-            title: "Open Settings",
+            title: L("Open Settings"),
             imageName: "reynard.gearshape",
             action: #selector(performSecondaryAction)
         )

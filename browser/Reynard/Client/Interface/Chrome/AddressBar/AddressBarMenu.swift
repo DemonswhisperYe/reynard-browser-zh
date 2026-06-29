@@ -38,7 +38,7 @@ enum AddressBarMenu {
             })
             
             if !BookmarkStore.shared.isSavedInFavorites(url) {
-                tabActions.append(UIAction(title: "Add to Favorites", image: UIImage(named: "reynard.star")) { _ in
+                tabActions.append(UIAction(title: L("Add to Favorites"), image: UIImage(named: "reynard.star")) { _ in
                     onBookmark(true)
                 })
             }
@@ -48,7 +48,7 @@ enum AddressBarMenu {
         if addonItems.isEmpty {
             addonsChildren = [
                 UIAction(
-                    title: "No Add-ons",
+                    title: L("No Add-ons"),
                     image: UIImage(named: "reynard.puzzlepiece.extension"),
                     attributes: .disabled
                 ) { _ in }
@@ -63,7 +63,7 @@ enum AddressBarMenu {
         
         var pageActions: [UIMenuElement] = [
             UIMenu(
-                title: "Add-ons",
+                title: L("Add-ons"),
                 image: UIImage(named: "reynard.puzzlepiece.extension"),
                 identifier: Identifier.manageAddonsMenu,
                 children: addonsChildren
@@ -71,7 +71,7 @@ enum AddressBarMenu {
         ]
         
         if url?.host != nil {
-            pageActions.append(UIAction(title: "Page Zoom", image: UIImage(named: "reynard.textformat.size")) { _ in
+            pageActions.append(UIAction(title: L("Page Zoom"), image: UIImage(named: "reynard.textformat.size")) { _ in
                 onPageZoom()
             })
         }
@@ -86,7 +86,7 @@ enum AddressBarMenu {
         
         var settingsActions: [UIMenuElement] = []
         if url?.host != nil {
-            settingsActions.append(UIAction(title: "Website Settings", image: UIImage(named: "reynard.gear")) { _ in
+            settingsActions.append(UIAction(title: L("Website Settings"), image: UIImage(named: "reynard.gear")) { _ in
                 onWebsiteSettings()
             })
         }

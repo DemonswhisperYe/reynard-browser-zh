@@ -182,7 +182,7 @@ final class AddonPermissionPromptViewController: UITableViewController {
                 cell.textLabel?.text = value
             case .showAllSites:
                 cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-                cell.textLabel?.text = "Show All Sites"
+                cell.textLabel?.text = L("Show All Sites")
                 cell.textLabel?.textColor = view.tintColor
                 cell.selectionStyle = .default
                 cell.accessoryType = .disclosureIndicator
@@ -195,7 +195,7 @@ final class AddonPermissionPromptViewController: UITableViewController {
             cell.textLabel?.text = dataCollectionDescription
         case .options:
             cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-            cell.textLabel?.text = "Allow in Private Browsing"
+            cell.textLabel?.text = L("Allow in Private Browsing")
             cell.accessoryView = privateBrowsingSwitch
         }
         

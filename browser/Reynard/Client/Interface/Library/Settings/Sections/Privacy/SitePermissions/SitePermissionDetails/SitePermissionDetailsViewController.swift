@@ -230,7 +230,7 @@ final class SitePermissionDetailsViewController: SettingsTableViewController {
     
     private func emptySiteEntryCell() -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "No Sites Added"
+        cell.textLabel?.text = L("No Sites Added")
         cell.textLabel?.textColor = .secondaryLabel
         cell.selectionStyle = .none
         return cell
@@ -286,7 +286,7 @@ final class SitePermissionDetailsViewController: SettingsTableViewController {
     }
     
     private func clearSiteActionSwipeConfiguration(for host: String) -> UISwipeActionsConfiguration {
-        let clearAction = UIContextualAction(style: .destructive, title: "Clear") { [weak self] _, _, completion in
+        let clearAction = UIContextualAction(style: .destructive, title: L("Clear")) { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return

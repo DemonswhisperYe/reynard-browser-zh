@@ -15,7 +15,7 @@ final class ClearHistoryViewController: UITableViewController {
     private let closeAllTabsSwitch = UISwitch()
     
     private lazy var clearFooterView = ClearDataFooterView(
-        title: "Clear History",
+        title: L("Clear History"),
         target: self,
         action: #selector(confirmClearHistory)
     )
@@ -75,7 +75,7 @@ final class ClearHistoryViewController: UITableViewController {
         if indexPath.section == 0 {
             ClearDataTimeframe.configureCell(cell, at: indexPath, selectedTimeframe: selectedTimeframe)
         } else {
-            cell.textLabel?.text = "Close All Tabs"
+            cell.textLabel?.text = L("Close All Tabs")
             cell.accessoryView = closeAllTabsSwitch
             cell.accessoryType = .none
             cell.selectionStyle = .none

@@ -92,14 +92,14 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
         let metaData = addon.metaData
         if metaData.isBlocklisted {
             return StatusMessage(
-                text: "This extension is blocked for violating Mozilla's policies and has been disabled.",
+                text: L("This extension is blocked for violating Mozilla's policies and has been disabled."),
                 color: .systemRed
             )
         }
         
         if metaData.isUnsupported {
             return StatusMessage(
-                text: "This extension isn't supported by this version of Reynard and has been disabled.",
+                text: L("This extension isn't supported by this version of Reynard and has been disabled."),
                 color: .systemOrange
             )
         }
@@ -282,7 +282,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
                 await MainActor.run {
                     self.isUpdatingAddon = false
                     self.display(addon: addon)
-                    AlertPresenter.show(title: "Failed to update private browsing access", message: "\(error)")
+                    AlertPresenter.show(title: L("Failed to update private browsing access"), message: "\(error)")
                 }
             }
         }
@@ -317,7 +317,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
                 await MainActor.run {
                     self.isUpdatingAddon = false
                     self.display(addon: addon)
-                    AlertPresenter.show(title: "Failed to \(desiredState ? "enable" : "disable") add-on", message: "\(error)")
+                    AlertPresenter.show(title: String(format: L("Failed to %@ add-on"), L(desiredState ? "enable" : "disable")), message: "\(error)")
                 }
             }
         }
@@ -347,7 +347,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
             }
         } catch {
             await MainActor.run {
-                AlertPresenter.show(title: "Failed to reload add-on", message: "\(error)")
+                AlertPresenter.show(title: L("Failed to reload add-on"), message: "\(error)")
             }
         }
     }
@@ -398,7 +398,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
             cell.selectionStyle = .none
             cell.accessoryView = privateBrowsingSwitch
         case .remove:
-            cell.textLabel?.text = "Remove"
+            cell.textLabel?.text = L("Remove")
             cell.textLabel?.textColor = addon == nil || isUpdatingAddon ? .secondaryLabel : .systemRed
         case .settings, .details, .permissions:
             break
@@ -423,13 +423,13 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
         
         switch displayedNavigationRows[indexPath.row] {
         case .settings:
-            cell.textLabel?.text = "Settings"
+            cell.textLabel?.text = L("Settings")
         case .details:
             cell.textLabel?.text = "Details"
         case .permissions:
             cell.textLabel?.text = "Permissions"
         case .remove:
-            cell.textLabel?.text = "Remove"
+            cell.textLabel?.text = L("Remove")
             cell.textLabel?.textColor = addon == nil || isUpdatingAddon ? .secondaryLabel : .systemRed
             cell.accessoryType = .none
         case .enabled, .privateBrowsing:
@@ -448,11 +448,11 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
     private func confirmRemoval() {
         let addonName = addon?.metaData.name ?? addonID
         AlertPresenter.show(
-            title: "Do you want to remove \(addonName)?",
+            title: String(format: L("Do you want to remove %@?"), addonName),
             message: nil,
             buttons: [
-                AlertPresenter.Button(title: "Cancel", style: .cancel),
-                AlertPresenter.Button(title: "Remove", style: .destructive) { [weak self] in
+                AlertPresenter.Button(title: L("Cancel"), style: .cancel),
+                AlertPresenter.Button(title: L("Remove"), style: .destructive) { [weak self] in
                     self?.uninstallAddon()
                 },
             ]
@@ -479,7 +479,7 @@ final class AddonDetailsPreferencesViewController: SettingsTableViewController {
                 await MainActor.run {
                     self.isUpdatingAddon = false
                     self.display(addon: addon)
-                    AlertPresenter.show(title: "Failed to remove add-on", message: "\(error)")
+                    AlertPresenter.show(title: L("Failed to remove add-on"), message: "\(error)")
                 }
             }
         }

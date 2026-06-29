@@ -219,7 +219,7 @@ final class SiteSettingsViewController: UITableViewController {
         }
         
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "Open Settings"
+        cell.textLabel?.text = L("Open Settings")
         cell.textLabel?.textColor = view.tintColor
         cell.accessoryType = .none
         return cell
@@ -265,7 +265,7 @@ final class SiteSettingsViewController: UITableViewController {
     
     private func resetSitePermissionsCell() -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        cell.textLabel?.text = "Reset Permissions for this Site"
+        cell.textLabel?.text = L("Reset Permissions for this Site")
         cell.textLabel?.textColor = .systemRed
         cell.detailTextLabel?.text = nil
         cell.detailTextLabel?.textColor = .secondaryLabel
@@ -419,12 +419,12 @@ final class SiteSettingsViewController: UITableViewController {
     private func confirmResetSitePermissions() {
         AlertPresenter.show(
             title: nil,
-            message: "This action will reset permissions for this site. It cannot be undone.",
+            message: L("This action will reset permissions for this site. It cannot be undone."),
             buttons: [
-                AlertPresenter.Button(title: "OK", style: .destructive) { [weak self] in
+                AlertPresenter.Button(title: L("OK"), style: .destructive) { [weak self] in
                     self?.performResetSitePermissions()
                 },
-                AlertPresenter.Button(title: "Cancel"),
+                AlertPresenter.Button(title: L("Cancel")),
             ]
         )
     }

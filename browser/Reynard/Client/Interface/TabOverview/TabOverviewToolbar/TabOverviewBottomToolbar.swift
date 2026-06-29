@@ -44,7 +44,7 @@ final class TabOverviewBottomToolbar: UIView {
     }
     
     func apply(tabCount: Int, hasVisibleTab: Bool) {
-        tabModeControl.setTitle("\(tabCount)" + (tabCount == 1 ? " Tab" : " Tabs"), forSegmentAt: TabOverview.Mode.regularTabs.rawValue)
+        tabModeControl.setTitle(String(format: L(tabCount == 1 ? "%d Tab" : "%d Tabs"), tabCount), forSegmentAt: TabOverview.Mode.regularTabs.rawValue)
         doneButton.setActionEnabled(hasVisibleTab)
         if #available(iOS 26.0, *) {
             liquidGlassActionToolbar.items?.last?.isEnabled = hasVisibleTab

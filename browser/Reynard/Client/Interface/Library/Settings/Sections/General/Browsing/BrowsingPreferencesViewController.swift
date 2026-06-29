@@ -113,7 +113,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
             switch MediaRow.allCases[indexPath.row] {
             case .autoplay:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-                cell.textLabel?.text = "Autoplay"
+                cell.textLabel?.text = L("Autoplay")
                 cell.detailTextLabel?.text = SiteSettingsUtils.actionTitle(
                     for: SiteSettingsUtils.defaultAction(for: .autoplay),
                     permission: .autoplay
@@ -135,7 +135,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
             }
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             cell.selectionStyle = .none
-            cell.textLabel?.text = "All Website"
+            cell.textLabel?.text = L("All Website")
             cell.accessoryView = requestDesktopWebsiteSwitch
             return cell
         }
@@ -157,7 +157,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
             switch MediaRow.allCases[indexPath.row] {
             case .autoplay:
                 navigationController?.pushViewController(
-                    SitePermissionDetailsViewController(permission: .autoplay, title: "Autoplay"),
+                    SitePermissionDetailsViewController(permission: .autoplay, title: L("Autoplay")),
                     animated: true
                 )
             case .showImagePreviews:

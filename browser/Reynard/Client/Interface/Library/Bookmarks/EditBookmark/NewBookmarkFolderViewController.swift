@@ -37,7 +37,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
         textField.clearButtonMode = .whileEditing
         textField.font = .preferredFont(forTextStyle: .body)
         textField.adjustsFontForContentSizeCategory = true
-        textField.placeholder = "Title"
+        textField.placeholder = L("Title")
         textField.delegate = self
         textField.addTarget(self, action: #selector(validateSaveButton), for: .editingChanged)
         return textField
@@ -69,7 +69,7 @@ final class NewBookmarkFolderViewController: UIViewController, UITableViewDataSo
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(createFolder))
             navigationItem.rightBarButtonItem?.tintColor = .label
         } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(createFolder))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: L("Save"), style: .done, target: self, action: #selector(createFolder))
         }
         
         view.addSubview(tableView)

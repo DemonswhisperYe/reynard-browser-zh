@@ -193,7 +193,7 @@ final class AddonsPreferencesViewController: SettingsTableViewController {
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
             switch displayedMoreRows[indexPath.row] {
             case .discover:
-                cell.textLabel?.text = "Discover Add-ons..."
+                cell.textLabel?.text = L("Discover Add-ons...")
                 cell.textLabel?.textColor = view.tintColor
             case .installFromFile:
                 cell.textLabel?.text = isInstallingAddonFromFile ? "Installing Add-on..." : "Install Add-on From File..."

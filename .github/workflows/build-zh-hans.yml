@@ -1,0 +1,130 @@
+name: Build zh-Hans Reynard
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_gecko:
+        description: "Build Gecko engine before app build"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+jobs:
+  build:
+    name: Build IPA on macOS
+    runs-on: macos-26
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          fetch-depth: 0
+
+      - name: Show environment
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-path
+
+      - name: Install dependencies
+        run: |
+          brew update
+          brew install ldid ccache llvm lld || true
+          echo "$(brew --prefix llvm)/bin" >> "$GITHUB_PATH"
+          echo "$(brew --prefix lld)/bin" >> "$GITHUB_PATH"
+
+      - name: Configure Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-ios
+
+      - name: Install Rust build tools
+        run: |
+          cargo install cbindgen --locked
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            support/idevice/target
+          key: cargo-ios-${{ runner.os }}-${{ hashFiles('support/idevice/**/Cargo.lock', 'support/idevice/**/Cargo.toml') }}
+          restore-keys: |
+            cargo-ios-${{ runner.os }}-
+
+      - name: Cache Gecko object directory
+        uses: actions/cache@v4
+        with:
+          path: engine/firefox/obj-aarch64-apple-ios
+          key: gecko-ios-${{ runner.os }}-${{ github.sha }}
+          restore-keys: |
+            gecko-ios-${{ runner.os }}-
+
+      - name: Init source submodules
+        run: |
+          rm -rf support/idevice engine/firefox
+          git submodule sync --recursive
+          git submodule update --init --recursive support/idevice
+          git submodule update --init engine/firefox
+
+      - name: Download Gecko and apply patches
+        if: ${{ inputs.build_gecko == 'true' }}
+        run: |
+          ./tools/development/update-gecko.sh
+          ./tools/development/apply-patches.sh
+
+      - name: Build idevice dependency
+        run: |
+          export PATH="$HOME/.cargo/bin:$PATH"
+          ./tools/development/build-idevice.sh
+
+      - name: Build Gecko engine
+        if: ${{ inputs.build_gecko == 'true' }}
+        run: |
+          export PATH="$(brew --prefix llvm)/bin:$(brew --prefix lld)/bin:$HOME/.cargo/bin:$PATH"
+          export CCACHE_DIR="$HOME/.ccache"
+          export CC=clang
+          export CXX=clang++
+          export LD=ld64.lld
+          ./tools/development/build-gecko.sh
+
+      - name: Ensure build metadata works outside release clone
+        run: |
+          git rev-parse --short HEAD
+
+      - name: Inspect Xcode project
+        run: |
+          xcodebuild -list -project browser/Reynard.xcodeproj
+          find browser/Reynard/Resources -maxdepth 2 -type f -print
+          find browser/Reynard/Client/Localization -maxdepth 1 -type f -print
+
+      - name: Build Reynard archive
+        run: |
+          ./tools/release/build-app.sh
+
+      - name: Create IPA/TIPA packages
+        run: |
+          ./tools/release/create-ipa.sh
+
+      - name: List dist outputs
+        if: always()
+        run: |
+          find dist -maxdepth 3 -type f -print 2>/dev/null || true
+          ls -lah dist 2>/dev/null || true
+
+      - name: Upload build artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reynard-zh-hans-build
+          path: |
+            dist/*.ipa
+            dist/*.tipa
+            dist/*.xcarchive
+          if-no-files-found: warn

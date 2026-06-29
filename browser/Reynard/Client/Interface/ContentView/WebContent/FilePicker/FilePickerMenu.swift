@@ -78,7 +78,7 @@ extension FilePicker {
                 }
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { [weak self] _ in
             self?.finish(with: nil)
         })
         

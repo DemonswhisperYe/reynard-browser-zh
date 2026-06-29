@@ -81,7 +81,7 @@ final class PromptPresenter: PromptPresenting {
                 message: request.message.isEmpty ? nil : request.message,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: L("OK"), style: .default) { _ in
                 continuation.resume()
             })
             presenter.present(alert, animated: true)
@@ -116,7 +116,7 @@ final class PromptPresenter: PromptPresenting {
             }
             
             if alert.actions.isEmpty {
-                alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+                alert.addAction(UIAlertAction(title: L("OK"), style: .default) { _ in
                     continuation.resume(returning: .button(0))
                 })
             }
@@ -139,10 +139,10 @@ final class PromptPresenter: PromptPresenting {
             alert.addTextField { textField in
                 textField.text = request.value
             }
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { _ in
                 continuation.resume(returning: nil)
             })
-            alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: L("OK"), style: .default) { _ in
                 continuation.resume(returning: .text(alert.textFields?.first?.text ?? ""))
             })
             presenter.present(alert, animated: true)
@@ -160,14 +160,14 @@ final class PromptPresenter: PromptPresenting {
         
         return await withCheckedContinuation { continuation in
             let alert = UIAlertController(
-                title: "Confirm Upload",
+                title: L("Confirm Upload"),
                 message: message,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { _ in
                 continuation.resume(returning: .folderUpload(allowed: false))
             })
-            alert.addAction(UIAlertAction(title: "Upload", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: L("Upload"), style: .default) { _ in
                 continuation.resume(returning: .folderUpload(allowed: true))
             })
             presenter.present(alert, animated: true)

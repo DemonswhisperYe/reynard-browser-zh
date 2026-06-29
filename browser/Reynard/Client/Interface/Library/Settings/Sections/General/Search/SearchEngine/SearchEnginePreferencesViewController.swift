@@ -144,8 +144,8 @@ final class SearchEnginePreferencesViewController: SettingsTableViewController, 
         let customQueryTemplate = Prefs.SearchSettings.customSearchTemplate
         guard !customQueryTemplate.isEmpty, !SearchEngine.canSearch(using: customQueryTemplate) else { return }
         AlertPresenter.show(
-            title: "Invalid Search URL",
-            message: "Enter a valid http(s) URL containing %s where the search query should go."
+            title: L("Invalid Search URL"),
+            message: L("Enter a valid http(s) URL containing %s where the search query should go.")
         )
     }
     

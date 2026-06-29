@@ -94,7 +94,7 @@ final class SearchPreferencesViewController: SettingsTableViewController {
             }
             
             let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-            cell.textLabel?.text = "Search Engine"
+            cell.textLabel?.text = L("Search Engine")
             cell.detailTextLabel?.text = Prefs.SearchSettings.searchEngine.displayName
             cell.detailTextLabel?.textColor = .secondaryLabel
             cell.accessoryType = .disclosureIndicator
@@ -106,15 +106,15 @@ final class SearchPreferencesViewController: SettingsTableViewController {
             
             switch SearchSuggestionsRow.allCases[indexPath.row] {
             case .showSearchSuggestions:
-                return switchCell(title: "Show Search Suggestions", accessoryView: showSearchSuggestionsSwitch)
+                return switchCell(title: L("Show Search Suggestions"), accessoryView: showSearchSuggestionsSwitch)
             case .showInPrivateBrowsing:
-                return switchCell(title: "Show in Private Browsing", accessoryView: showInPrivateBrowsingSwitch)
+                return switchCell(title: L("Show in Private Browsing"), accessoryView: showInPrivateBrowsingSwitch)
             case .searchBrowsingHistory:
-                return switchCell(title: "Search Browsing History", accessoryView: searchBrowsingHistorySwitch)
+                return switchCell(title: L("Search Browsing History"), accessoryView: searchBrowsingHistorySwitch)
             case .searchBookmarks:
-                return switchCell(title: "Search Bookmarks", accessoryView: searchBookmarksSwitch)
+                return switchCell(title: L("Search Bookmarks"), accessoryView: searchBookmarksSwitch)
             case .searchOpenedTabs:
-                return switchCell(title: "Search Opened Tabs", accessoryView: searchOpenedTabsSwitch)
+                return switchCell(title: L("Search Opened Tabs"), accessoryView: searchOpenedTabsSwitch)
             case .searchSuggestionProvider:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
                 cell.textLabel?.text = "Search Suggestion Provider"

@@ -9,6 +9,10 @@ import UIKit
 import UniformTypeIdentifiers
 import MobileCoreServices
 
+private func L(_ key: String, comment: String = "") -> String {
+    NSLocalizedString(key, comment: comment)
+}
+
 final class OpenInViewController: UIViewController {
     private var hasStartedOpenFlow = false
     
@@ -42,12 +46,12 @@ final class OpenInViewController: UIViewController {
             }
             
             guard let sharedURL else {
-                self.finishWithError(message: "No link was provided.")
+                self.finishWithError(message: L("No link was provided."))
                 return
             }
             
             guard let browserURL = self.browserOpenURL(for: sharedURL) else {
-                self.finishWithError(message: "Unable to open Reynard.")
+                self.finishWithError(message: L("Unable to open Reynard."))
                 return
             }
             
@@ -106,7 +110,7 @@ final class OpenInViewController: UIViewController {
             responder = r.next
         }
 
-        finishWithError(message: "Unable to open Reynard.")
+        finishWithError(message: L("Unable to open Reynard."))
     }
     
     private func clearBackgrounds(startingAt view: UIView?) {

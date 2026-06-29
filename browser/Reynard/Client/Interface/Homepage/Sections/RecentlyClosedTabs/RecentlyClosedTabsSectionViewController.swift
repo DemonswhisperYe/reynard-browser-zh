@@ -46,7 +46,7 @@ final class RecentlyClosedTabsSectionViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tintColor = .label
         button.titleLabel?.adjustsFontForContentSizeCategory = true
-        button.setTitle("Clear All", for: .normal)
+        button.setTitle(L("Clear All"), for: .normal)
         button.addTarget(self, action: #selector(clearAllButtonTapped), for: .touchUpInside)
         return button
     }()

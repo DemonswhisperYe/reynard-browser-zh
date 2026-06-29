@@ -12,7 +12,7 @@ final class ClearDownloadsViewController: UITableViewController {
     private var selectedTimeframe: ClearDataTimeframe = .lastHour
     
     private lazy var clearFooterView = ClearDataFooterView(
-        title: "Clear Downloads",
+        title: L("Clear Downloads"),
         target: self,
         action: #selector(confirmClearDownloads)
     )
