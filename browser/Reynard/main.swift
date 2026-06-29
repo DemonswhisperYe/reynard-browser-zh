@@ -15,22 +15,24 @@ private let reynardLocale = "zh_CN.UTF-8"
 
 private func configureSimplifiedChineseRuntimeLocale() {
     setenv("LANGUAGE", "zh_CN:zh:en_US:en", 1)
-    setenv("LC_ALL", reynardLocale, 1)
     setenv("LANG", reynardLocale, 1)
 }
 
 private func ensureSimplifiedChineseGeckoUserPreferences() {
     let fileManager = FileManager.default
-    var roots: [URL] = []
-
-    for directory in [
-        FileManager.SearchPathDirectory.applicationSupportDirectory,
-        .cachesDirectory,
-        .documentDirectory,
-        .libraryDirectory,
-    ] {
-        roots.append(contentsOf: fileManager.urls(for: directory, in: .userDomainMask))
-    }
+    let roots = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+        .flatMap { applicationSupportDirectory in
+            [
+                applicationSupportDirectory
+                    .appendingPathComponent(".mozilla", isDirectory: true)
+                    .appendingPathComponent("firefox", isDirectory: true),
+                applicationSupportDirectory
+                    .appendingPathComponent("mozilla", isDirectory: true)
+                    .appendingPathComponent("firefox", isDirectory: true),
+                applicationSupportDirectory
+                    .appendingPathComponent("Firefox", isDirectory: true),
+            ]
+        }
 
     var profileDirectories = Set<URL>()
 
@@ -65,15 +67,13 @@ private func collectGeckoProfileDirectories(
 
         let prefsURL = url.appendingPathComponent("prefs.js", isDirectory: false)
         let userPrefsURL = url.appendingPathComponent("user.js", isDirectory: false)
-        let profilesIniURL = url.appendingPathComponent("profiles.ini", isDirectory: false)
 
         if fileManager.fileExists(atPath: prefsURL.path) ||
-            fileManager.fileExists(atPath: userPrefsURL.path) ||
-            fileManager.fileExists(atPath: profilesIniURL.path) {
+            fileManager.fileExists(atPath: userPrefsURL.path) {
             profileDirectories.insert(url)
         }
 
-        guard item.depth < 6,
+        guard item.depth < 3,
               let children = try? fileManager.contentsOfDirectory(
                 at: url,
                 includingPropertiesForKeys: [.isDirectoryKey],

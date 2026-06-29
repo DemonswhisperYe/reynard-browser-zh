@@ -126,5 +126,4 @@ jobs:
           path: |
             dist/*.ipa
             dist/*.tipa
-            dist/*.xcarchive
           if-no-files-found: warn
