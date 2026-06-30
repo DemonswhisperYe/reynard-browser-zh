@@ -129,11 +129,11 @@ extension FilePicker {
     private func title(for action: PickerAction) -> String {
         switch action {
         case .photoLibrary:
-            return "Photo Library"
+            return L("Photo Library")
         case .camera:
             return cameraActionTitle
         case .chooseFile:
-            return mode == .folder ? "Choose Folder" : "Choose File"
+            return mode == .folder ? L("Choose Folder") : L("Choose File")
         }
     }
     
@@ -155,13 +155,13 @@ extension FilePicker {
         
         switch (supportsImages, supportsVideos) {
         case (true, true):
-            return "Take Photo or Video"
+            return L("Take Photo or Video")
         case (true, false):
-            return "Take Photo"
+            return L("Take Photo")
         case (false, true):
-            return "Take Video"
+            return L("Take Video")
         case (false, false):
-            return "Take Photo"
+            return L("Take Photo")
         }
     }
     

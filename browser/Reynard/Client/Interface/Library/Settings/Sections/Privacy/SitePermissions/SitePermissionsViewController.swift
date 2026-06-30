@@ -39,19 +39,19 @@ final class SitePermissionsViewController: SettingsTableViewController {
         var title: String {
             switch self {
             case .camera:
-                return "Camera"
+                return L("Camera")
             case .microphone:
-                return "Microphone"
+                return L("Microphone")
             case .location:
-                return "Location"
+                return L("Location")
             case .persistentStorage:
-                return "Persistent Storage"
+                return L("Persistent Storage")
             case .crossOriginStorageAccess:
-                return "Cross-site Cookies"
+                return L("Cross-site Cookies")
             case .localDeviceAccess:
-                return "Device Apps and Services"
+                return L("Device Apps and Services")
             case .localNetworkAccess:
-                return "Local Network Devices"
+                return L("Local Network Devices")
             }
         }
         
@@ -99,7 +99,7 @@ final class SitePermissionsViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Site Permissions"
+        title = L("Site Permissions")
     }
     
     required init?(coder: NSCoder) {

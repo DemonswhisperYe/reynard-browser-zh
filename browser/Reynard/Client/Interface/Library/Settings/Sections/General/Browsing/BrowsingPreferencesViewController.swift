@@ -16,11 +16,11 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
         var text: SettingsSectionText {
             switch self {
             case .links:
-                return SettingsSectionText(headerTitle: "Links")
+                return SettingsSectionText(headerTitle: L("Links"))
             case .media:
-                return SettingsSectionText(headerTitle: "Media")
+                return SettingsSectionText(headerTitle: L("Media"))
             case .desktopWebsite:
-                return SettingsSectionText(headerTitle: "Request Desktop Website On")
+                return SettingsSectionText(headerTitle: L("Request Desktop Website On"))
             }
         }
     }
@@ -44,7 +44,7 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Browsing"
+        title = L("Browsing")
     }
     
     required init?(coder: NSCoder) {
@@ -101,8 +101,8 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
             }
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
             cell.selectionStyle = .none
-            cell.textLabel?.text = "Show Link Previews"
-            cell.detailTextLabel?.text = "When long-pressing links"
+            cell.textLabel?.text = L("Show Link Previews")
+            cell.detailTextLabel?.text = L("When long-pressing links")
             cell.detailTextLabel?.textColor = .secondaryLabel
             cell.accessoryView = showLinkPreviewsSwitch
             return cell
@@ -123,8 +123,8 @@ final class BrowsingPreferencesViewController: SettingsTableViewController {
             case .showImagePreviews:
                 let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
                 cell.selectionStyle = .none
-                cell.textLabel?.text = "Show Image Previews"
-                cell.detailTextLabel?.text = "When long-pressing images"
+                cell.textLabel?.text = L("Show Image Previews")
+                cell.detailTextLabel?.text = L("When long-pressing images")
                 cell.detailTextLabel?.textColor = .secondaryLabel
                 cell.accessoryView = showImagePreviewsSwitch
                 return cell

@@ -26,19 +26,19 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
         var title: String {
             switch self {
             case .browsingHistory:
-                return "Browsing History"
+                return L("Browsing History")
             case .cookiesAndSiteData:
-                return "Cookies and Site Data"
+                return L("Cookies and Site Data")
             case .cachedImagesAndFiles:
-                return "Cached Images and Files"
+                return L("Cached Images and Files")
             case .downloadsHistory:
-                return "Downloads History"
+                return L("Downloads History")
             case .downloadedFiles:
-                return "Downloaded Files"
+                return L("Downloaded Files")
             case .sitePermissions:
-                return "Site Permissions"
+                return L("Site Permissions")
             case .openedTabs:
-                return "Opened Tabs"
+                return L("Opened Tabs")
             }
         }
         
@@ -46,11 +46,11 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
             switch self {
             case .browsingHistory:
                 let count = HistoryStore.shared.currentSnapshot().items.count
-                return "\(count) \(count == 1 ? "address" : "addresses")"
+                return count == 1 ? L("1 address") : String(format: L("%d addresses"), count)
             case .cookiesAndSiteData:
-                return "You'll be logged out of most sites"
+                return L("You'll be logged out of most sites")
             case .cachedImagesAndFiles:
-                return "Frees up storage space"
+                return L("Frees up storage space")
             case .downloadsHistory:
                 return nil
             case .downloadedFiles:
@@ -109,7 +109,7 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Clear Browsing Data"
+        title = L("Clear Browsing Data")
     }
     
     required init?(coder: NSCoder) {
@@ -196,7 +196,7 @@ final class ClearBrowsingDataViewController: SettingsTableViewController {
     
     private func clearActionCell() -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = "Clear Browsing Data"
+        cell.textLabel?.text = L("Clear Browsing Data")
         cell.textLabel?.textColor = .systemRed
         cell.accessoryType = .none
         return cell

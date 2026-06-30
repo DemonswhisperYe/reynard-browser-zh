@@ -16,13 +16,13 @@ final class HomepagePreferencesViewController: SettingsTableViewController {
             switch self {
             case .openingScreen:
                 return SettingsSectionText(
-                    headerTitle: "Opening Screen",
-                    footerTitle: "Choose what to see when you open Reynard."
+                    headerTitle: L("Opening Screen"),
+                    footerTitle: L("Choose what to see when you open Reynard.")
                 )
             case .includeOnHomepage:
                 return SettingsSectionText(
-                    headerTitle: "Show on Homepage",
-                    footerTitle: "Choose what to show on the homepage."
+                    headerTitle: L("Show on Homepage"),
+                    footerTitle: L("Choose what to show on the homepage.")
                 )
             }
         }
@@ -30,7 +30,7 @@ final class HomepagePreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Homepage"
+        title = L("Homepage")
     }
     
     required init?(coder: NSCoder) {
@@ -91,7 +91,7 @@ final class HomepagePreferencesViewController: SettingsTableViewController {
             let row = HomepageSectionPreferencesViewController.OverviewRow.allCases[indexPath.row]
             let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             cell.textLabel?.text = row.title
-            cell.detailTextLabel?.text = row.isEnabled ? "On" : "Off"
+            cell.detailTextLabel?.text = row.isEnabled ? L("On") : L("Off")
             cell.accessoryType = .disclosureIndicator
             return cell
         }

@@ -27,13 +27,13 @@ final class SitePermissionDetailsViewController: SettingsTableViewController {
         var text: SettingsSectionText {
             switch self {
             case .defaultBehavior:
-                return SettingsSectionText(headerTitle: "Default Behavior")
+                return SettingsSectionText(headerTitle: L("Default Behavior"))
             case .allowedSiteEntries:
-                return SettingsSectionText(headerTitle: "Allowed Sites")
+                return SettingsSectionText(headerTitle: L("Allowed Sites"))
             case .blockedSiteEntries:
-                return SettingsSectionText(headerTitle: "Denied Sites")
+                return SettingsSectionText(headerTitle: L("Denied Sites"))
             case .customSiteActions:
-                return SettingsSectionText(headerTitle: "Changed Sites")
+                return SettingsSectionText(headerTitle: L("Changed Sites"))
             }
         }
     }
@@ -308,11 +308,11 @@ final class SitePermissionDetailsViewController: SettingsTableViewController {
         let timestamp = timestampFormatter.string(from: date)
         switch action {
         case .allowed:
-            return "Allowed on \(timestamp)"
+            return String(format: L("Allowed on %@"), timestamp)
         case .blocked:
-            return "Denied on \(timestamp)"
+            return String(format: L("Denied on %@"), timestamp)
         case .askToAllow:
-            return "Changed on \(timestamp)"
+            return String(format: L("Changed on %@"), timestamp)
         }
     }
     

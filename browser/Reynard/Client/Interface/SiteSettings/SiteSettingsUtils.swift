@@ -79,20 +79,20 @@ enum SiteSettingsUtils {
         case .autoplay:
             switch action {
             case .allowed:
-                return "Allow Audio and Video"
+                return L("Allow Audio and Video")
             case .askToAllow:
-                return "Block Audio only"
+                return L("Block Audio only")
             case .blocked:
-                return "Block Audio and Video"
+                return L("Block Audio and Video")
             }
         default:
             switch action {
             case .allowed:
-                return "Allow"
+                return L("Allow")
             case .askToAllow:
-                return "Ask"
+                return L("Ask")
             case .blocked:
-                return "Deny"
+                return L("Deny")
             }
         }
     }

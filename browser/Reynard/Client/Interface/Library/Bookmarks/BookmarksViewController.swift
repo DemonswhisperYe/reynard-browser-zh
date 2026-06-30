@@ -96,7 +96,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             showsNavigationMenu = false
         }
         super.init(nibName: nil, bundle: nil)
-        title = "Bookmarks"
+        title = L("Bookmarks")
     }
     
     required init?(coder: NSCoder) {
@@ -474,10 +474,10 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func makeSortMenu() -> UIMenu {
         let selectedOrder = Prefs.BookmarkSettings.sortOrders
         let sortOptions: [(title: String, order: BookmarkSortOrder)] = [
-            ("None", .none),
-            ("Date Added", .date_added),
-            ("Name", .name),
-            ("Address", .address),
+            (L("None"), .none),
+            (L("Date Added"), .date_added),
+            (L("Name"), .name),
+            (L("Address"), .address),
         ]
         let menu = UIMenu(
             title: L("Sort By"),
@@ -537,7 +537,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func makeBookmarkSections(from newItems: [BookmarkContentSnapshot]) -> [(title: String, items: [BookmarkContentSnapshot])] {
         guard Prefs.BookmarkSettings.placeFoldersOnTop else {
             let sortedItems = sortBookmarks(newItems)
-            return sortedItems.isEmpty ? [] : [("Bookmarks", sortedItems)]
+            return sortedItems.isEmpty ? [] : [(L("Bookmarks"), sortedItems)]
         }
         
         let folders = sortBookmarks(newItems.filter {
@@ -555,8 +555,8 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             return false
         })
         return [
-            ("Folders", folders),
-            ("Bookmarks", bookmarks),
+            (L("Folders"), folders),
+            (L("Bookmarks"), bookmarks),
         ].filter { !$0.items.isEmpty }
     }
     

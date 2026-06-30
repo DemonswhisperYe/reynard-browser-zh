@@ -16,9 +16,9 @@ final class PageZoomPreferencesViewController: SettingsTableViewController {
         var text: SettingsSectionText {
             switch self {
             case .default:
-                return SettingsSectionText(headerTitle: "Default")
+                return SettingsSectionText(headerTitle: L("Default"))
             case .siteSettings:
-                return SettingsSectionText(headerTitle: "Specific Site Settings")
+                return SettingsSectionText(headerTitle: L("Specific Site Settings"))
             case .reset:
                 return SettingsSectionText()
             }
@@ -48,7 +48,7 @@ final class PageZoomPreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Page Zoom"
+        title = L("Page Zoom")
     }
     
     required init?(coder: NSCoder) {
@@ -95,7 +95,7 @@ final class PageZoomPreferencesViewController: SettingsTableViewController {
         switch row {
         case .defaultZoom:
             let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-            cell.textLabel?.text = "Zoom Level"
+            cell.textLabel?.text = L("Zoom Level")
             cell.detailTextLabel?.text = PageZoomLevels.displayText(for: Prefs.AppearanceSettings.defaultPageZoomLevel)
             cell.accessoryType = .disclosureIndicator
             return cell
@@ -107,7 +107,7 @@ final class PageZoomPreferencesViewController: SettingsTableViewController {
             return cell
         case .reset:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Reset Page Zoom Settings"
+            cell.textLabel?.text = L("Reset Page Zoom Settings")
             cell.textLabel?.textColor = .systemRed
             return cell
         }

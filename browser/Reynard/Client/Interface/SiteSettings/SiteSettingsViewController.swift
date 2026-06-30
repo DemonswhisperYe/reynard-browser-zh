@@ -30,21 +30,21 @@ final class SiteSettingsViewController: UITableViewController {
         var title: String {
             switch self {
             case .camera:
-                return "Camera"
+                return L("Camera")
             case .microphone:
-                return "Microphone"
+                return L("Microphone")
             case .location:
-                return "Location"
+                return L("Location")
             case .persistentStorage:
-                return "Persistent Storage"
+                return L("Persistent Storage")
             case .crossOriginStorageAccess:
-                return "Cross-site Cookies"
+                return L("Cross-site Cookies")
             case .localDeviceAccess:
-                return "Device Apps and Services"
+                return L("Device Apps and Services")
             case .localNetworkAccess:
-                return "Local Network Devices"
+                return L("Local Network Devices")
             case .autoplay:
-                return "Autoplay"
+                return L("Autoplay")
             }
         }
         
@@ -115,7 +115,7 @@ final class SiteSettingsViewController: UITableViewController {
         self.origin = origin
         self.session = session
         super.init(style: .insetGrouped)
-        title = "Settings for \(host)"
+        title = String(format: L("Settings for %@"), host)
     }
     
     required init?(coder: NSCoder) {
@@ -158,9 +158,9 @@ final class SiteSettingsViewController: UITableViewController {
         case .availability:
             return nil
         case .media:
-            return "Media"
+            return L("Media")
         case .permissions:
-            return "Permissions"
+            return L("Permissions")
         }
     }
     

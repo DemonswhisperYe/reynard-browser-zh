@@ -15,9 +15,9 @@ final class SearchPreferencesViewController: SettingsTableViewController {
         var text: SettingsSectionText {
             switch self {
             case .searchEngine:
-                return SettingsSectionText(headerTitle: "Search Engine")
+                return SettingsSectionText(headerTitle: L("Search Engine"))
             case .searchSuggestions:
-                return SettingsSectionText(headerTitle: "Search Suggestions")
+                return SettingsSectionText(headerTitle: L("Search Suggestions"))
             }
         }
     }
@@ -39,7 +39,7 @@ final class SearchPreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Search"
+        title = L("Search")
     }
     
     required init?(coder: NSCoder) {
@@ -117,7 +117,7 @@ final class SearchPreferencesViewController: SettingsTableViewController {
                 return switchCell(title: L("Search Opened Tabs"), accessoryView: searchOpenedTabsSwitch)
             case .searchSuggestionProvider:
                 let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
-                cell.textLabel?.text = "Search Suggestion Provider"
+                cell.textLabel?.text = L("Search Suggestion Provider")
                 cell.detailTextLabel?.text = Prefs.SearchSettings.searchSuggestionProvider.name
                 cell.detailTextLabel?.textColor = .secondaryLabel
                 cell.accessoryType = .disclosureIndicator
