@@ -104,7 +104,7 @@ final class FavoriteFolderCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(folder: BookmarkFolderSnapshot, previewBookmarks: [BookmarkSnapshot]) {
-        titleLabel.text = folder.title
+        titleLabel.text = folder.displayTitle
         configurePreview(bookmarks: Array(previewBookmarks.prefix(4)))
     }
     

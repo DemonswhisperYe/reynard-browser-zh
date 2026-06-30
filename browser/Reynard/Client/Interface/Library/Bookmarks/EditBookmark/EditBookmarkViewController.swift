@@ -126,7 +126,7 @@ final class EditBookmarkViewController: UIViewController, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = limitsToFavorites ? "Add to Favorites" : (bookmark == nil ? "Add Bookmark" : "Edit Bookmark")
+        title = limitsToFavorites ? L("Add to Favorites") : (bookmark == nil ? L("Add Bookmark") : L("Edit Bookmark"))
         view.backgroundColor = .systemGroupedBackground
         navigationItem.largeTitleDisplayMode = .never
         

@@ -78,7 +78,7 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
             let allowed = await promptPresenter.request(
                 title: title,
                 message: permission.alertMessage,
-                cancelTitle: "Don't Allow",
+                cancelTitle: L("Don't Allow"),
                 for: session
             )
             return allowed ? .allow : .deny
@@ -108,7 +108,7 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
             let allowed = await promptPresenter.request(
                 title: title,
                 message: permission.alertMessage,
-                cancelTitle: "Don't Allow",
+                cancelTitle: L("Don't Allow"),
                 for: session
             )
             let action: SitePermissionAction = allowed ? .allowed : .blocked
@@ -140,7 +140,7 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
                 audioRequested: request.audioRequested
             ),
             message: nil,
-            cancelTitle: "Cancel",
+            cancelTitle: L("Cancel"),
             for: session
         )
         let action: SitePermissionAction = allowed ? .allowed : .blocked

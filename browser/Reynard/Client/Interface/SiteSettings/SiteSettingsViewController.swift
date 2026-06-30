@@ -129,7 +129,7 @@ final class SiteSettingsViewController: UITableViewController {
             await self?.loadPermissionsFromGecko()
         }
     }
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         visibleSections.count
     }

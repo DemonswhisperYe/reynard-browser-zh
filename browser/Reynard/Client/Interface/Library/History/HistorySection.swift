@@ -36,11 +36,11 @@ extension HistorySection {
     
     private static func title(for date: Date, calendar: Calendar) -> String {
         if calendar.isDateInToday(date) {
-            return "Today"
+            return L("Today")
         }
-        
+
         if calendar.isDateInYesterday(date) {
-            return "Yesterday"
+            return L("Yesterday")
         }
         
         return dateTitleFormatter.string(from: date)

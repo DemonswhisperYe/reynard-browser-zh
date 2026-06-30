@@ -106,7 +106,7 @@ final class BookmarkItemCell: UITableViewCell {
         representedURL = nil
         faviconTask?.cancel()
         faviconTask = nil
-        itemTitleLabel.text = folder.title
+        itemTitleLabel.text = folder.displayTitle
         countLabel.text = "\(folder.childCount)"
         countLabel.isHidden = false
         

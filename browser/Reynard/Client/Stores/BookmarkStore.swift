@@ -48,6 +48,16 @@ struct BookmarkFolderSnapshot: Hashable {
     let position: Int
     let childCount: Int
     let isProtected: Bool
+
+    var displayTitle: String {
+        if guid == "root________" {
+            return L("Bookmarks")
+        }
+        if guid == "favorites___" {
+            return L("Favorites")
+        }
+        return title
+    }
 }
 
 final class BookmarkStore {

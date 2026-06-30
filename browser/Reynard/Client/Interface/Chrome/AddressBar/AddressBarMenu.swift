@@ -32,7 +32,7 @@ enum AddressBarMenu {
         
         let url = selectedURL.flatMap(URL.init(string:))
         if let url, url.host != nil {
-            let title = BookmarkStore.shared.bookmark(savedFor: url) == nil ? "Add Bookmark" : "Edit Bookmark"
+            let title = BookmarkStore.shared.bookmark(savedFor: url) == nil ? L("Add Bookmark") : L("Edit Bookmark")
             tabActions.append(UIAction(title: title, image: UIImage(named: "reynard.book")) { _ in
                 onBookmark(false)
             })
@@ -77,7 +77,7 @@ enum AddressBarMenu {
         }
         
         if let isDesktop = usesDesktopWebsite {
-            let title = isDesktop ? "Request Mobile Website" : "Request Desktop Website"
+            let title = isDesktop ? L("Request Mobile Website") : L("Request Desktop Website")
             let imageName = isDesktop ? "reynard.smartphone" : "reynard.desktopcomputer"
             pageActions.append(UIAction(title: title, image: UIImage(named: imageName)) { _ in
                 onChangeWebsiteMode()
