@@ -153,7 +153,7 @@ index a6edb082d7f0..309e76990812 100644
  
    // This is managed with weak references by the notification center so that we
    // do not need to call removeObserver.
-@@ -199,9 +210,26 @@ - (id)initWithFrame:(CGRect)inFrame geckoChild:(nsWindow*)inChild {
+@@ -199,9 +210,37 @@ - (id)initWithFrame:(CGRect)inFrame geckoChild:(nsWindow*)inChild {
    return self;
  }
  
@@ -164,20 +164,23 @@ index a6edb082d7f0..309e76990812 100644
 +    return;
 +  }
 +
-+  self.backgroundColor = [UIColor systemBackgroundColor];
-+
 +  if (previousTraitCollection &&
 +      self.traitCollection.userInterfaceStyle ==
 +          previousTraitCollection.userInterfaceStyle) {
 +    return;
 +  }
 +
-+  mGeckoChild->SuspendAsyncCATransactions();
++  if (mGeckoChild->GetNativeLayerRoot()) {
++    mGeckoChild->SuspendAsyncCATransactions();
++  }
 +
++  self.backgroundColor = [UIColor systemBackgroundColor];
 +  nsLookAndFeel::SetSystemUsesDarkTheme(
 +      self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark);
 +
-+  mGeckoChild->MaybeScheduleUnsuspendAsyncCATransactions();
++  if (mGeckoChild->GetNativeLayerRoot()) {
++    mGeckoChild->MaybeScheduleUnsuspendAsyncCATransactions();
++  }
 +}
 +
  - (void)widgetDestroyed {
@@ -329,7 +332,7 @@ index a6edb082d7f0..309e76990812 100644
    if (!mGeckoChild) return;
  
    [self sendTouchEvent:eTouchMove
-@@ -333,8 +391,27 @@ - (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
+@@ -333,8 +391,35 @@ - (void)touchesMoved:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event {
                  widget:mGeckoChild];
  }
  
@@ -340,7 +343,9 @@ index a6edb082d7f0..309e76990812 100644
 +    return;
 +  }
 +
-+  mGeckoChild->SuspendAsyncCATransactions();
++  if (mGeckoChild->GetNativeLayerRoot()) {
++    mGeckoChild->SuspendAsyncCATransactions();
++  }
 +
 +  // REYNARD: Ensure a detached ChildView does not keep stale responder state
 +  // while we mirror activation on ChildView attach/detach transitions.
@@ -354,7 +359,9 @@ index a6edb082d7f0..309e76990812 100644
 +    mGeckoChild->NotifyWindowActivationState(false);
 +  }
 +
-+  mGeckoChild->MaybeScheduleUnsuspendAsyncCATransactions();
++  if (mGeckoChild->GetNativeLayerRoot()) {
++    mGeckoChild->MaybeScheduleUnsuspendAsyncCATransactions();
++  }
 +}
 +
  - (void)layoutSubviews {
@@ -588,10 +595,12 @@ index a6edb082d7f0..309e76990812 100644
    TearDownView();
  
    nsIWidget::OnDestroy();
-@@ -842,6 +907,17 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
+@@ -842,12 +907,30 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
  void nsWindow::Show(bool aState) {
    if (aState != mVisible) {
-+    SuspendAsyncCATransactions();
++    if (mNativeLayerRoot) {
++      SuspendAsyncCATransactions();
++    }
      mNativeView.hidden = aState ? NO : YES;
 +
 +    // REYNARD: UIKit key-window notifications only fire for the app window, so
@@ -608,12 +617,16 @@ index a6edb082d7f0..309e76990812 100644
        if (mParent) {
          [mParent->mNativeView bringSubviewToFront:mNativeView];
        }
+       [mNativeView setNeedsDisplay];
      }
+     mVisible = aState;
 +
-+    MaybeScheduleUnsuspendAsyncCATransactions();
++    if (mNativeLayerRoot) {
++      MaybeScheduleUnsuspendAsyncCATransactions();
++    }
    }
  }
-@@ -852,6 +928,26 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
+@@ -852,4 +928,25 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
  
 +void nsWindow::NotifyWindowActivationState(bool aActive) {
 +  // REYNARD: Keep both listener paths aligned so focus ownership tracks the
