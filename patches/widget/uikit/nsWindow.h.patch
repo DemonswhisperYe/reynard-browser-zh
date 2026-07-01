@@ -41,6 +41,8 @@ index f9488e23575e..1345886ce27d 100644
                         const InputContextAction& aAction) override;
    InputContext GetInputContext() override;
 +  void NotifyWindowActivationState(bool aActive);
++  void SuspendOffMainThreadCommitsDuringUIKitLayout();
++  void UnsuspendOffMainThreadCommitsAfterUIKitLayout();
 +  void SetCompositorWidgetDelegate(
 +      mozilla::widget::CompositorWidgetDelegate* aDelegate) override;
    TextEventDispatcherListener* GetNativeTextEventDispatcherListener() override;

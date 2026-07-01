@@ -160,6 +160,12 @@ index a6edb082d7f0..309e76990812 100644
 +- (void)traitCollectionDidChange:(UITraitCollection*)previousTraitCollection {
 +  [super traitCollectionDidChange:previousTraitCollection];
 +
++  if (!mGeckoChild) {
++    return;
++  }
++
++  mGeckoChild->SuspendOffMainThreadCommitsDuringUIKitLayout();
++
 +  self.backgroundColor = [UIColor systemBackgroundColor];
 +
 +  if (previousTraitCollection &&
@@ -170,6 +176,8 @@ index a6edb082d7f0..309e76990812 100644
 +
 +  nsLookAndFeel::SetSystemUsesDarkTheme(
 +      self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark);
++
++  mGeckoChild->UnsuspendOffMainThreadCommitsAfterUIKitLayout();
 +}
 +
  - (void)widgetDestroyed {
@@ -332,6 +340,8 @@ index a6edb082d7f0..309e76990812 100644
 +    return;
 +  }
 +
++  mGeckoChild->SuspendOffMainThreadCommitsDuringUIKitLayout();
++
 +  // REYNARD: Ensure a detached ChildView does not keep stale responder state
 +  // while we mirror activation on ChildView attach/detach transitions.
 +  if (![self window] && [self isFirstResponder]) {
@@ -343,6 +353,8 @@ index a6edb082d7f0..309e76990812 100644
 +  } else if (![self window]) {
 +    mGeckoChild->NotifyWindowActivationState(false);
 +  }
++
++  mGeckoChild->UnsuspendOffMainThreadCommitsAfterUIKitLayout();
 +}
 +
  - (void)layoutSubviews {
@@ -491,6 +503,11 @@ index a6edb082d7f0..309e76990812 100644
 +void nsWindow::CloseNativeLayerRemoteParent(bool aWaitUntilClosed) {
 +  // REYNARD: Drop the remote actor's layer-root reference before we destroy
 +  // the UIKit view so the CA root cannot outlive its backing layer tree.
++  if (mUnsuspendAsyncCATransactionsRunnable) {
++    mUnsuspendAsyncCATransactionsRunnable->Cancel();
++    mUnsuspendAsyncCATransactionsRunnable = nullptr;
++  }
++
 +  RefPtr<NativeLayerRootRemoteMacParent> actor =
 +      std::move(mNativeLayerRootRemoteMacParent);
 +  if (!actor) {
@@ -533,6 +550,11 @@ index a6edb082d7f0..309e76990812 100644
 +  // tears that layer tree down.
 +  if (!mNativeLayerRoot) {
 +    return;
++  }
++
++  if (mUnsuspendAsyncCATransactionsRunnable) {
++    mUnsuspendAsyncCATransactionsRunnable->Cancel();
++    mUnsuspendAsyncCATransactionsRunnable = nullptr;
 +  }
 +
 +  mNativeLayerRoot->SetLayers({});
@@ -579,6 +601,7 @@ index a6edb082d7f0..309e76990812 100644
 @@ -842,6 +907,17 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
  void nsWindow::Show(bool aState) {
    if (aState != mVisible) {
++    SuspendOffMainThreadCommitsDuringUIKitLayout();
      mNativeView.hidden = aState ? NO : YES;
 +
 +    // REYNARD: UIKit key-window notifications only fire for the app window, so
@@ -594,9 +617,14 @@ index a6edb082d7f0..309e76990812 100644
      if (aState) {
        if (mParent) {
          [mParent->mNativeView bringSubviewToFront:mNativeView];
-@@ -852,6 +928,26 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
+       }
+     }
++
++    UnsuspendOffMainThreadCommitsAfterUIKitLayout();
    }
  }
++
++@@ -852,6 +928,26 @@ - (UIAccessibilityContainerType)accessibilityContainerType {
  
 +void nsWindow::NotifyWindowActivationState(bool aActive) {
 +  // REYNARD: Keep both listener paths aligned so focus ownership tracks the
@@ -618,6 +646,38 @@ index a6edb082d7f0..309e76990812 100644
 +    mAttachedWidgetListener->WindowDeactivated();
 +  }
 +}
++
++void nsWindow::SuspendOffMainThreadCommitsDuringUIKitLayout() {
++  MOZ_ASSERT(NS_IsMainThread());
++  if (mNativeLayerRoot) {
++    mNativeLayerRoot->SuspendOffMainThreadCommits();
++  }
++
++  if (mUnsuspendAsyncCATransactionsRunnable) {
++    mUnsuspendAsyncCATransactionsRunnable->Cancel();
++    mUnsuspendAsyncCATransactionsRunnable = nullptr;
++  }
++}
++
++void nsWindow::UnsuspendOffMainThreadCommitsAfterUIKitLayout() {
++  MOZ_ASSERT(NS_IsMainThread());
++  if (!mNativeLayerRoot || mUnsuspendAsyncCATransactionsRunnable) {
++    return;
++  }
++
++  RefPtr<nsWindow> self = this;
++  mUnsuspendAsyncCATransactionsRunnable = NS_NewCancelableRunnableFunction(
++      "nsWindow::UnsuspendOffMainThreadCommitsAfterUIKitLayout",
++      [self]() {
++        self->mUnsuspendAsyncCATransactionsRunnable = nullptr;
++        if (self->mNativeLayerRoot) {
++          self->mNativeLayerRoot->UnsuspendOffMainThreadCommits();
++        }
++      });
++
++  NS_DispatchToMainThread(mUnsuspendAsyncCATransactionsRunnable);
++}
++
  void nsWindow::Move(const DesktopPoint& aPoint) {
    if (!mNativeView || (mBounds.x == aPoint.x && mBounds.y == aPoint.y)) {
      return;
@@ -827,6 +887,11 @@ index a6edb082d7f0..309e76990812 100644
 +void nsWindow::DestroyCompositor() {
 +  if (mNativeLayerRoot) {
 +    mNativeLayerRoot->SetLayers({});
++  }
++
++  if (mUnsuspendAsyncCATransactionsRunnable) {
++    mUnsuspendAsyncCATransactionsRunnable->Cancel();
++    mUnsuspendAsyncCATransactionsRunnable = nullptr;
 +  }
 +
 +  CloseNativeLayerRemoteParent(false);
