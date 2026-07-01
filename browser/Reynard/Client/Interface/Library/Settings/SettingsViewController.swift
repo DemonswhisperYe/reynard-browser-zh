@@ -146,7 +146,7 @@ final class SettingsViewController: SettingsTableViewController {
         case .privacy:
             privacySection.selectRow(at: indexPath.row, from: self)
         case .about:
-            aboutSection.selectRow(at: indexPath.row, from: self)
+            aboutSection.selectRow(at: indexPath.row)
         }
     }
     
