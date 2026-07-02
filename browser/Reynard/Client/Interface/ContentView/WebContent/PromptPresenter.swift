@@ -292,15 +292,15 @@ final class PromptPresenter: PromptPresenting {
         
         switch label {
         case "ok":
-            return "OK"
+            return L("OK")
         case "cancel":
-            return "Cancel"
+            return L("Cancel")
         case "yes":
-            return "Yes"
+            return L("Yes")
         case "no":
-            return "No"
+            return L("No")
         case "custom":
-            return customLabel.isEmpty ? "OK" : customLabel
+            return customLabel.isEmpty ? L("OK") : customLabel
         default:
             return ""
         }
