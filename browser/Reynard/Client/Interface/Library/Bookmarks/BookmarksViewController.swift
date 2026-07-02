@@ -525,7 +525,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func reloadFolder() {
         let snapshot = store.contents(of: folderID)
         sections = makeBookmarkSections(from: snapshot.items)
-        title = isRoot ? L("Bookmarks") : snapshot.parent.title
+        title = snapshot.parent.displayTitle
         updateEmptyState()
         tableView.reloadData()
     }
