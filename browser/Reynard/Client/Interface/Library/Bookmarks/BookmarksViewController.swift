@@ -25,7 +25,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
         return folderID == nil
     }
     private lazy var newFolderButton = UIBarButtonItem(
-        title: "New Folder",
+        title: L("New Folder"),
         style: .plain,
         target: self,
         action: #selector(showNewFolderEditor)
@@ -35,7 +35,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "Search Bookmarks"
+        searchBar.placeholder = L("Search Bookmarks")
         searchBar.delegate = self
         return searchBar
     }()
@@ -78,7 +78,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     }()
     private let emptyLabel: UILabel = {
         let label = UILabel()
-        label.text = "No matching bookmarks"
+        label.text = L("No matching bookmarks")
         label.font = .systemFont(ofSize: UX.emptyStateFontSize, weight: .medium)
         label.textColor = .secondaryLabel
         label.textAlignment = .center
@@ -96,7 +96,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             showsNavigationMenu = false
         }
         super.init(nibName: nil, bundle: nil)
-        title = "Bookmarks"
+        title = L("Bookmarks")
     }
     
     required init?(coder: NSCoder) {
@@ -325,7 +325,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             return nil
         }
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] _, _, completion in
+        let deleteAction = UIContextualAction(style: .destructive, title: L("Delete")) { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return
@@ -338,7 +338,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             return UISwipeActionsConfiguration(actions: [deleteAction])
         }
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] _, _, completion in
+        let editAction = UIContextualAction(style: .normal, title: L("Edit")) { [weak self] _, _, completion in
             guard let self else {
                 completion(false)
                 return
@@ -452,7 +452,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
         UIMenu(title: "", children: [
             makeSortMenu(),
             UIAction(
-                title: "Show Folders on Top",
+                title: L("Show Folders on Top"),
                 image: UIImage(named: "reynard.text.below.folder"),
                 state: Prefs.BookmarkSettings.placeFoldersOnTop ? .on : .off
             ) { [weak self] _ in
@@ -461,10 +461,10 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
                 self?.updateBookmarkMenu()
             },
             UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [
-                UIAction(title: "Edit Bookmarks", image: UIImage(named: "reynard.pencil")) { [weak self] _ in
+                UIAction(title: L("Edit Bookmarks"), image: UIImage(named: "reynard.pencil")) { [weak self] _ in
                     self?.setEditing(true, animated: true)
                 },
-                UIAction(title: "New Folder", image: UIImage(named: "reynard.folder.badge.plus")) { [weak self] _ in
+                UIAction(title: L("New Folder"), image: UIImage(named: "reynard.folder.badge.plus")) { [weak self] _ in
                     self?.showNewFolderEditor()
                 },
             ]),
@@ -474,13 +474,13 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func makeSortMenu() -> UIMenu {
         let selectedOrder = Prefs.BookmarkSettings.sortOrders
         let sortOptions: [(title: String, order: BookmarkSortOrder)] = [
-            ("None", .none),
-            ("Date Added", .date_added),
-            ("Name", .name),
-            ("Address", .address),
+            (L("None"), .none),
+            (L("Date Added"), .date_added),
+            (L("Name"), .name),
+            (L("Address"), .address),
         ]
         let menu = UIMenu(
-            title: "Sort By",
+            title: L("Sort By"),
             image: UIImage(named: "reynard.arrow.up.arrow.down"),
             identifier: nil,
             options: [],
@@ -525,7 +525,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func reloadFolder() {
         let snapshot = store.contents(of: folderID)
         sections = makeBookmarkSections(from: snapshot.items)
-        title = snapshot.parent.title
+        title = snapshot.parent.displayTitle
         updateEmptyState()
         tableView.reloadData()
     }
@@ -537,7 +537,7 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
     private func makeBookmarkSections(from newItems: [BookmarkContentSnapshot]) -> [(title: String, items: [BookmarkContentSnapshot])] {
         guard Prefs.BookmarkSettings.placeFoldersOnTop else {
             let sortedItems = sortBookmarks(newItems)
-            return sortedItems.isEmpty ? [] : [("Bookmarks", sortedItems)]
+            return sortedItems.isEmpty ? [] : [(L("Bookmarks"), sortedItems)]
         }
         
         let folders = sortBookmarks(newItems.filter {
@@ -555,8 +555,8 @@ final class BookmarksViewController: UIViewController, UITableViewDataSource, UI
             return false
         })
         return [
-            ("Folders", folders),
-            ("Bookmarks", bookmarks),
+            (L("Folders"), folders),
+            (L("Bookmarks"), bookmarks),
         ].filter { !$0.items.isEmpty }
     }
     

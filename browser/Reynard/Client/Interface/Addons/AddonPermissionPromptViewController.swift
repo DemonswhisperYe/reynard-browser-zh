@@ -144,11 +144,11 @@ final class AddonPermissionPromptViewController: UITableViewController {
             guard !permissionRows.isEmpty else {
                 return nil
             }
-            return "Required Permissions"
+            return L("Required Permissions")
         case .dataCollection:
-            return "Required Data Collection"
+            return L("Required Data Collection")
         case .options:
-            return "Additional Options"
+            return L("Additional Options")
         case .message:
             return nil
         }
@@ -182,7 +182,7 @@ final class AddonPermissionPromptViewController: UITableViewController {
                 cell.textLabel?.text = value
             case .showAllSites:
                 cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-                cell.textLabel?.text = "Show All Sites"
+                cell.textLabel?.text = L("Show All Sites")
                 cell.textLabel?.textColor = view.tintColor
                 cell.selectionStyle = .default
                 cell.accessoryType = .disclosureIndicator
@@ -195,7 +195,7 @@ final class AddonPermissionPromptViewController: UITableViewController {
             cell.textLabel?.text = dataCollectionDescription
         case .options:
             cell.textLabel?.font = .preferredFont(forTextStyle: .body)
-            cell.textLabel?.text = "Allow in Private Browsing"
+            cell.textLabel?.text = L("Allow in Private Browsing")
             cell.accessoryView = privateBrowsingSwitch
         }
         

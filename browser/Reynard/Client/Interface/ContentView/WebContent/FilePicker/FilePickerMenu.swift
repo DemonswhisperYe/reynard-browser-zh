@@ -78,7 +78,7 @@ extension FilePicker {
                 }
             })
         }
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { [weak self] _ in
             self?.finish(with: nil)
         })
         
@@ -129,11 +129,11 @@ extension FilePicker {
     private func title(for action: PickerAction) -> String {
         switch action {
         case .photoLibrary:
-            return "Photo Library"
+            return L("Photo Library")
         case .camera:
             return cameraActionTitle
         case .chooseFile:
-            return mode == .folder ? "Choose Folder" : "Choose File"
+            return mode == .folder ? L("Choose Folder") : L("Choose File")
         }
     }
     
@@ -152,16 +152,16 @@ extension FilePicker {
         let mediaTypes = Set(acceptedTypes.mediaTypes)
         let supportsImages = mediaTypes.contains(kUTTypeImage as String)
         let supportsVideos = mediaTypes.contains(kUTTypeMovie as String)
-        
+
         switch (supportsImages, supportsVideos) {
         case (true, true):
-            return "Take Photo or Video"
+            return L("Take Photo or Video")
         case (true, false):
-            return "Take Photo"
+            return L("Take Photo")
         case (false, true):
-            return "Take Video"
+            return L("Take Video")
         case (false, false):
-            return "Take Photo"
+            return L("Take Photo")
         }
     }
     

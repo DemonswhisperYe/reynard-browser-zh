@@ -27,7 +27,7 @@ enum AlertPresenter {
     static func show(
         title: String?,
         message: String?,
-        buttons: [Button] = [Button(title: "OK")]
+        buttons: [Button] = [Button(title: L("OK"))]
     ) {
         DispatchQueue.main.async {
             guard let presenter = UIApplication.shared.topViewController() else {

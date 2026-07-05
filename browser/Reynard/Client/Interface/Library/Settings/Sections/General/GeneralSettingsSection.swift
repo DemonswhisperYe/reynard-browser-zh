@@ -29,19 +29,19 @@ struct GeneralSettingsSection {
         
         switch Row.allCases[index] {
         case .addons:
-            return SettingsViewUtils.disclosureCell(title: "Add-ons")
+            return SettingsViewUtils.disclosureCell(title: L("Add-ons"))
         case .browsing:
-            return SettingsViewUtils.disclosureCell(title: "Browsing")
+            return SettingsViewUtils.disclosureCell(title: L("Browsing"))
         case .search:
-            return SettingsViewUtils.disclosureCell(title: "Search")
+            return SettingsViewUtils.disclosureCell(title: L("Search"))
         case .newTab:
-            return SettingsViewUtils.disclosureCell(title: "New Tab")
+            return SettingsViewUtils.disclosureCell(title: L("New Tab"))
         case .homepage:
-            return SettingsViewUtils.disclosureCell(title: "Homepage")
+            return SettingsViewUtils.disclosureCell(title: L("Homepage"))
         case .appearance:
-            return SettingsViewUtils.disclosureCell(title: "Appearance")
+            return SettingsViewUtils.disclosureCell(title: L("Appearance"))
         case .compatibility:
-            return SettingsViewUtils.disclosureCell(title: "Compatibility")
+            return SettingsViewUtils.disclosureCell(title: L("Compatibility"))
         }
     }
     

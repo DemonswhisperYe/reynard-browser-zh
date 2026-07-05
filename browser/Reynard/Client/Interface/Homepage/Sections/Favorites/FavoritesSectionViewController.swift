@@ -59,7 +59,7 @@ final class FavoritesSectionViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = FavoritesSectionViewController.titleFont
         label.textColor = .label
-        label.text = "Favorites"
+        label.text = L("Favorites")
         label.adjustsFontForContentSizeCategory = true
         return label
     }()

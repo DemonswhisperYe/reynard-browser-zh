@@ -41,29 +41,35 @@ enum SiteSettingsUtils {
     
     static func disabledPermissionNames() -> [String] {
         var permissions: [String] = []
-        
+
         if isCameraPermissionDisabled() {
-            permissions.append("Camera")
+            permissions.append(L("Camera"))
         }
         if isMicrophonePermissionDisabled() {
-            permissions.append("Microphone")
+            permissions.append(L("Microphone"))
         }
         if isLocationPermissionDisabled() {
-            permissions.append("Location")
+            permissions.append(L("Location"))
         }
-        
+
         return permissions
     }
-    
+
     static func disabledPermissionMessage() -> String {
         let names = disabledPermissionNames()
         let permissionList = formattedPermissionList(names)
-        
+
         if names.count == 1 {
-            return "\(permissionList) is currently disabled for Reynard. Open the Settings app to enable this permission."
+            return String(
+                format: L("%@ is currently disabled for Reynard. Open the Settings app to enable this permission."),
+                permissionList
+            )
         }
-        
-        return "\(permissionList) are currently disabled for Reynard. Open the Settings app to enable these permissions."
+
+        return String(
+            format: L("%@ are currently disabled for Reynard. Open the Settings app to enable these permissions."),
+            permissionList
+        )
     }
     
     // MARK: - Permission Actions
@@ -79,20 +85,20 @@ enum SiteSettingsUtils {
         case .autoplay:
             switch action {
             case .allowed:
-                return "Allow Audio and Video"
+                return L("Allow Audio and Video")
             case .askToAllow:
-                return "Block Audio only"
+                return L("Block Audio only")
             case .blocked:
-                return "Block Audio and Video"
+                return L("Block Audio and Video")
             }
         default:
             switch action {
             case .allowed:
-                return "Allow"
+                return L("Allow")
             case .askToAllow:
-                return "Ask"
+                return L("Ask")
             case .blocked:
-                return "Deny"
+                return L("Deny")
             }
         }
     }

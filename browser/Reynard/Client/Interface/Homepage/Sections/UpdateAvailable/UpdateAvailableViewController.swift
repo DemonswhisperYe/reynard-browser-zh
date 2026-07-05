@@ -59,7 +59,7 @@ final class UpdateAvailableViewController: UIViewController, HomepageRecommendat
         label.font = UIFontMetrics(forTextStyle: .title2).scaledFont(
             for: .systemFont(ofSize: UX.titleFontSize, weight: .bold)
         )
-        label.text = "Update Available"
+        label.text = L("Update Available")
         label.textAlignment = .left
         label.textColor = .label
         label.numberOfLines = 0
@@ -96,7 +96,7 @@ final class UpdateAvailableViewController: UIViewController, HomepageRecommendat
     
     private lazy var settingsButton: UIButton = {
         return makeActionButton(
-            title: "Open Settings",
+            title: L("Open Settings"),
             imageName: "reynard.gearshape",
             action: #selector(openSettings)
         )

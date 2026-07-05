@@ -78,27 +78,27 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
             let allowed = await promptPresenter.request(
                 title: title,
                 message: permission.alertMessage,
-                cancelTitle: "Don't Allow",
+                cancelTitle: L("Don't Allow"),
                 for: session
             )
             return allowed ? .allow : .deny
         }
-        
+
         guard let sitePermission = SitePermission(contentPermission: permission),
               let host = URLUtils.normalizedHost(fromRawURI: permission.uri) else {
             return .prompt
         }
-        
+
         let action = permissionStore.resolvedAction(for: sitePermission, host: host, session: session)
         if sitePermission == .autoplay {
             applyPermission(action, to: sitePermission, permission: permission)
             return ContentPermission.Value(rawValue: action.autoplayValue) ?? .deny
         }
-        
+
         guard let title = permission.alertTitle else {
             return .prompt
         }
-        
+
         switch action {
         case .blocked,
                 .allowed:
@@ -108,7 +108,7 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
             let allowed = await promptPresenter.request(
                 title: title,
                 message: permission.alertMessage,
-                cancelTitle: "Don't Allow",
+                cancelTitle: L("Don't Allow"),
                 for: session
             )
             let action: SitePermissionAction = allowed ? .allowed : .blocked
@@ -140,7 +140,7 @@ final class PermissionCoordinator: NSObject, PermissionEmbedderDelegate {
                 audioRequested: request.audioRequested
             ),
             message: nil,
-            cancelTitle: "Cancel",
+            cancelTitle: L("Cancel"),
             for: session
         )
         let action: SitePermissionAction = allowed ? .allowed : .blocked

@@ -19,11 +19,11 @@ final class AppearancePreferencesViewController: SettingsTableViewController {
             case .appAppearance:
                 return SettingsSectionText()
             case .addressBar:
-                return SettingsSectionText(headerTitle: "Address Bar")
+                return SettingsSectionText(headerTitle: L("Address Bar"))
             case .tabs:
-                return SettingsSectionText(headerTitle: "Tabs")
+                return SettingsSectionText(headerTitle: L("Tabs"))
             case .pageZoom:
-                return SettingsSectionText(headerTitle: "Page Zoom")
+                return SettingsSectionText(headerTitle: L("Page Zoom"))
             }
         }
         
@@ -66,7 +66,7 @@ final class AppearancePreferencesViewController: SettingsTableViewController {
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Appearance"
+        title = L("Appearance")
     }
     
     required init?(coder: NSCoder) {
@@ -127,19 +127,19 @@ final class AppearancePreferencesViewController: SettingsTableViewController {
             return cell
         case .showFullWebsiteAddress:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Show Full Website Address"
+            cell.textLabel?.text = L("Show Full Website Address")
             cell.selectionStyle = .none
             cell.accessoryView = showFullWebsiteAddressSwitch
             return cell
         case .landscapeTabBar:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Landscape Tab Bar"
+            cell.textLabel?.text = L("Landscape Tab Bar")
             cell.selectionStyle = .none
             cell.accessoryView = landscapeTabBarSwitch
             return cell
         case .pageZoom:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Zoom Settings"
+            cell.textLabel?.text = L("Zoom Settings")
             cell.accessoryType = .disclosureIndicator
             return cell
         }

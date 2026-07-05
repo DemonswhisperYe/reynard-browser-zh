@@ -47,12 +47,12 @@ final class JITSettingsSection: NSObject {
         switch Row.allCases[index] {
         case .enableJIT:
             let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-            cell.textLabel?.text = "Enable JIT"
+            cell.textLabel?.text = L("Enable JIT")
             cell.selectionStyle = .none
             cell.accessoryView = jitSwitch
             return cell
         case .importPairingFile:
-            let cell = SettingsViewUtils.actionCell(title: "Import Pairing File...", tintColor: tintColor)
+            let cell = SettingsViewUtils.actionCell(title: L("Import Pairing File..."), tintColor: tintColor)
             
             if #available(iOS 16.7, *) {
                 if #unavailable(iOS 17.4) {
@@ -152,7 +152,7 @@ final class JITSettingsSection: NSObject {
                 }
             } catch {
                 DispatchQueue.main.async {
-                    AlertPresenter.show(title: "Import Failed", message: error.localizedDescription)
+                    AlertPresenter.show(title: L("Import Failed"), message: error.localizedDescription)
                 }
             }
         }
@@ -165,8 +165,8 @@ final class JITSettingsSection: NSObject {
         
         sender.isEnabled = false
         let alert = UIAlertController(
-            title: "Preparing JIT",
-            message: "Since this is your first time enabling JIT, Reynard needs to download and mount the Developer Disk Image. This is required for JIT to work properly.",
+            title: L("Preparing JIT"),
+            message: L("Since this is your first time enabling JIT, Reynard needs to download and mount the Developer Disk Image. This is required for JIT to work properly."),
             preferredStyle: .alert
         )
         let progressView = UIProgressView(progressViewStyle: .default)
@@ -175,7 +175,7 @@ final class JITSettingsSection: NSObject {
         
         let token = UUID()
         activeDDIDownloadToken = token
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: L("Cancel"), style: .cancel) { [weak self] _ in
             self?.cancelDDI(for: sender, token: token)
         })
         
@@ -219,7 +219,7 @@ final class JITSettingsSection: NSObject {
                     Prefs.JITSettings.isJITEnabled = false
                     sender.setOn(false, animated: true)
                     SettingsViewUtils.dismissPresentedAlert(alert, from: settingsController) {
-                        AlertPresenter.show(title: "Download Failed", message: error.localizedDescription)
+                        AlertPresenter.show(title: L("Download Failed"), message: error.localizedDescription)
                     }
                 }
             }
@@ -240,11 +240,11 @@ final class JITSettingsSection: NSObject {
     
     private func showRestartAlert() {
         let alert = UIAlertController(
-            title: "Restart Required",
-            message: "The app will now close for the JIT setting to take effect.",
+            title: L("Restart Required"),
+            message: L("The app will now close for the JIT setting to take effect."),
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: L("OK"), style: .default) { _ in
             UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                 exit(EXIT_SUCCESS)

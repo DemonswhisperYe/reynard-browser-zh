@@ -14,14 +14,14 @@ final class SearchSuggestionProviderPreferencesViewController: SettingsTableView
         var text: SettingsSectionText {
             switch self {
             case .providers:
-                return SettingsSectionText(headerTitle: "Search Suggestion Provider")
+                return SettingsSectionText(headerTitle: L("Search Suggestion Provider"))
             }
         }
     }
     
     init() {
         super.init(style: .insetGrouped)
-        title = "Search Suggestion Provider"
+        title = L("Search Suggestion Provider")
     }
     
     required init?(coder: NSCoder) {

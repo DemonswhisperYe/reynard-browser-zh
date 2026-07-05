@@ -18,15 +18,15 @@ final class SettingsViewController: SettingsTableViewController {
         var text: SettingsSectionText {
             switch self {
             case .updates:
-                return SettingsSectionText(headerTitle: "Update Available")
+                return SettingsSectionText(headerTitle: L("Update Available"))
             case .jit:
                 return SettingsSectionText(headerTitle: "JIT")
             case .general:
-                return SettingsSectionText(headerTitle: "General")
+                return SettingsSectionText(headerTitle: L("General"))
             case .privacy:
-                return SettingsSectionText(headerTitle: "Privacy")
+                return SettingsSectionText(headerTitle: L("Privacy"))
             case .about:
-                return SettingsSectionText(headerTitle: "About")
+                return SettingsSectionText(headerTitle: L("About"))
             }
         }
     }
@@ -186,7 +186,7 @@ final class SettingsViewController: SettingsTableViewController {
     // MARK: - View Setup
     
     private func configureViewController() {
-        title = "Settings"
+        title = L("Settings")
         jitSection.attach(to: self)
     }
     

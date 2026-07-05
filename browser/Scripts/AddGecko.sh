@@ -8,8 +8,19 @@ FRAMEWORKS_DIR="${APP_BUNDLE}/Frameworks"
 GECKOVIEW_FW="${FRAMEWORKS_DIR}/GeckoView.framework"
 GECKOVIEW_FW_FRAMEWORKS="${GECKOVIEW_FW}/Frameworks"
 
-SIGN_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:-${EXPANDED_CODE_SIGN_IDENTITY_NAME:-Apple Development}}"
+SIGN_IDENTITY="${EXPANDED_CODE_SIGN_IDENTITY:-${EXPANDED_CODE_SIGN_IDENTITY_NAME:-}}"
 DEFAULT_THEME_SRC="${SRCROOT}/../engine/firefox/toolkit/mozapps/extensions/default-theme"
+
+sign_if_available() {
+	file="$1"
+
+	if [ "${CODE_SIGNING_ALLOWED:-YES}" = "NO" ] || [ -z "${SIGN_IDENTITY}" ]; then
+		echo "Skipping codesign for ${file}"
+		return 0
+	fi
+
+	codesign --force --sign "${SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${file}"
+}
 
 mkdir -p "${FRAMEWORKS_DIR}"
 mkdir -p "${GECKOVIEW_FW_FRAMEWORKS}"
@@ -20,7 +31,7 @@ cp -fL "${GECKO_DIST_BIN}/XUL" "${GECKOVIEW_FW}/XUL"
 
 for file in "${GECKOVIEW_FW}/XUL" "${FRAMEWORKS_DIR}/"*.dylib; do
 	if [ -f "${file}" ]; then
-		codesign --force --sign "${SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${file}"
+		sign_if_available "${file}"
 	fi
 done
 
@@ -33,4 +44,4 @@ cp -RfL "${DEFAULT_THEME_SRC}/" "${GECKOVIEW_FW_FRAMEWORKS}/default-theme/"
 echo "resource default-theme file:default-theme/" >> "${GECKOVIEW_FW_FRAMEWORKS}/chrome.manifest"
 
 # sign the GeckoView.framework
-codesign --force --sign "${SIGN_IDENTITY}" "${GECKOVIEW_FW}"
+sign_if_available "${GECKOVIEW_FW}"
